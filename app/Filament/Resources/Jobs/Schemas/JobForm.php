@@ -7,6 +7,7 @@ use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Toggle;
@@ -40,28 +41,26 @@ class JobForm
                             ->maxLength(255),
 
                         TextInput::make('title')
+                            ->label('Division Name')
                             ->required()
                             ->maxLength(255),
 
-                        Textarea::make('description')
-                            ->required()
-                            ->rows(5)
-                            ->columnSpanFull(),
+                        RichEditor::make('description')
+                            ->required(),
 
                         TextInput::make('qualification')
                             ->required(),
                     ]),
 
                 Section::make('Districts')
+                    ->label('Headquaters')
                     ->columns(1)
                     ->schema([
                         Select::make('districts')
                             ->relationship('districts', 'name')
-                            ->helperText('Maximum 12 Locations')
                             ->multiple()
                             ->searchable()
                             ->preload()
-                            ->maxItems(12)
                             ->required(),
                     ]),
 
@@ -86,9 +85,6 @@ class JobForm
                     ->schema([
 
                         TextInput::make('min_experience')
-                            ->numeric(),
-
-                        TextInput::make('max_experience')
                             ->numeric(),
 
                         TextInput::make('max_age')

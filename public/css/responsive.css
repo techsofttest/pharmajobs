@@ -1,0 +1,759 @@
+@media only screen and  (min-width: 1600px){
+ 
+.banner-formmain {
+   
+    bottom: 100px;
+}
+
+
+
+ 
+.About-menu li a {
+    font-size: 15px;
+    
+    padding: 12px 18px;
+    
+}
+
+
+}
+
+@media only screen and (max-width: 1299.98px) and (min-width: 1200px){
+	.corrp-sebox {
+   
+    padding: 20px 13px 5px;
+}
+	.main-menu>ul>li {
+    margin: 0 9px;
+}
+.main-menu a {
+  
+    font-size: 13px;
+	
+}
+
+
+.book-n-btn{
+	    margin-right: 5px;
+}
+
+.log-n-btn{
+	 margin-right: 5px;
+}
+.regn-btn {
+  
+    padding-left: 13px;
+    margin-left: 5px;
+}
+.header-logo h3 {
+    
+    font-size: 33px;
+   
+}
+}
+
+
+@media only screen and (max-width: 1199.98px) and (min-width: 992px){
+	
+	.corrp-sebox {
+   
+    padding: 20px 13px 5px;
+}
+	.main-menu>ul>li {
+    margin: 0 9px;
+}
+
+.book-n-btn{
+padding: 10px 26px;
+
+font-size:15px
+}
+
+.main-menu a {
+   
+    font-size: 15px;
+	
+}
+
+
+.header-logo img {
+    height: 30px;
+    
+}
+.sticky-wrapper.sticky .header-logo img {
+    height: 30px;
+ 
+}
+.hero-style4 .hero-title {
+   
+    font-size: 42px;
+}
+
+img.bann-img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top left;
+    min-height:600px
+}
+.counter-card .box-number {
+   
+    font-size: 27px;
+}
+
+.counter-card .box-text {
+    
+    font-size: 18px;
+}
+.blog-card .box-img img {
+    height: 300px;
+	
+}
+.destimations-three .single-offer-thumb img {
+ 
+    height: 205px;
+	
+}
+.sec-title.style2 {
+  
+    font-size: 40px;
+}
+.th-btn{
+padding: 14px 28px;
+
+}
+
+.crr-btngroup{
+	
+}
+.bbsbtn-grouup{
+	
+}
+.follow-uu {
+    font-size: 16px;
+	
+}
+.footer-logo-gold img {
+    height: 39px;
+}
+}
+
+
+@media only screen and (max-width: 991.98px) and (min-width: 768px){
+	
+	 
+
+.header-logo img {
+    height: 35px;
+    
+}
+.sticky-wrapper.sticky .header-logo img {
+    height: 35px;
+ 
+}
+.header-logo {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.hero-style4 .hero-title {
+   
+    font-size: 42px;
+}
+
+img.bann-img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top left;
+    min-height:600px
+}
+.counter-card .box-number {
+   
+    font-size: 27px;
+}
+
+.counter-card .box-text {
+    
+    font-size: 18px;
+}
+.blog-card .box-img img {
+    height: 259px;
+	
+}
+.destimations-three .single-offer-thumb img {
+ 
+    height: 205px;
+	
+}
+.sec-title.style2 {
+        font-size: 38px;
+    }
+.th-btn{
+padding: 14px 28px;
+
+}
+
+.crr-btngroup{
+	
+}
+.bbsbtn-grouup{
+	
+}
+.follow-uu {
+    font-size: 16px;
+	
+}
+.footer-logo-gold img {
+    height: 39px;
+}
+
+.booo-auto{
+	display:none!important
+}
+.counter-card .box-number span {
+    font-size: 33px;
+}
+    .counter-card .box-text {
+        font-size: 16px;
+    }
+	.counter-card{
+		padding:20px 8px
+	}
+	
+	.job-seekers-box {
+ 
+    padding: 30px 15px;
+	}
+	
+.employers-box{
+  padding: 30px 15px;
+}
+.job-seekers-box li {
+  font-size: 15px;	
+    
+    padding-left: 34px;
+    
+    padding-top: 1px;
+}
+.employers-box li{
+ font-size: 15px;	
+    
+    padding-left: 34px;
+    
+    padding-top: 1px;
+ 
+}
+.employers-box-i {
+ 
+    width: 30px;
+    height: 30px;
+	
+}
+.job-seekers-box-i{
+	 
+    width: 30px;
+    height: 30px;
+}
+.job-oo1{
+	order:1
+}
+.job-oo2{
+	order:2
+}
+.jobbsed-img  {
+	margin-top:20px
+}
+.ouu-box {
+    
+    padding: 20px 10px;
+}
+.ouu-box-content h3 {
+    font-size: 20px;
+}
+.ss-bb-box-content {
+    
+    margin-bottom: 30px;
+    padding-right: 0;
+}.testimonials-card__quote p {
+    font-size: 17px;
+	
+}
+.Succ-1 p {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.co-in-form{
+	
+	margin-top:30px}
+	
+	.copyright-wrap .container > .row > .col-lg-auto{
+		width:100%;
+		text-align:center
+	}
+	
+	.ss-cjii{
+		padding:10px 0
+	}
+	
+	.banner-anform .form-group input {
+    height: 44px;
+	
+	}
+	.banner-anform .th-btn {
+    height: 44px;
+	}
+}
+@media only screen and (max-width: 767.98px) and (min-width: 576px){
+	
+	 
+
+.header-logo img {
+    height: 35px;
+    
+}
+.sticky-wrapper.sticky .header-logo img {
+    height: 35px;
+ 
+}
+.header-logo {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.hero-style4 .hero-title {
+   
+    font-size: 35px;
+}
+
+img.bann-img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top left;
+    min-height:650px
+}
+.counter-card .box-number {
+   
+    font-size: 27px;
+}
+
+.counter-card .box-text {
+    
+    font-size: 18px;
+}
+.blog-card .box-img img {
+    height: auto;
+	
+}
+.destimations-three .single-offer-thumb img {
+ 
+    height: 205px;
+	
+}
+.sec-title.style2 {
+        font-size: 33px;
+    }
+.th-btn{
+padding: 14px 28px;
+
+}
+
+.crr-btngroup{
+	
+}
+.bbsbtn-grouup{
+	        justify-content: center !important;
+}
+.follow-uu {
+    font-size: 16px;
+	
+}
+.footer-logo-gold img {
+    height: 34px;
+}
+
+.booo-auto{
+	display:none!important
+}
+.counter-card .box-number span {
+    font-size: 33px;
+}
+    .counter-card .box-text {
+        font-size: 16px;
+    }
+	.counter-card{
+		padding:20px 8px
+	}
+	
+	.job-seekers-box {
+ 
+    padding: 30px 15px;
+	}
+	
+.employers-box{
+  padding: 30px 15px;
+}
+.job-seekers-box li {
+  font-size: 15px;	
+    
+    padding-left: 34px;
+    
+    padding-top: 1px;
+}
+.employers-box li{
+ font-size: 15px;	
+    
+    padding-left: 34px;
+    
+    padding-top: 1px;
+ 
+}
+.employers-box-i {
+ 
+    width: 30px;
+    height: 30px;
+	
+}
+.job-seekers-box-i{
+	 
+    width: 30px;
+    height: 30px;
+}
+.job-oo1{
+	order:1
+}
+.job-oo2{
+	order:2
+}
+.jobbsed-img  {
+	margin-top:20px
+}
+.ouu-box {
+    
+    padding: 20px 10px;
+}
+.ouu-box-content h3 {
+    font-size: 20px;
+}
+.ss-bb-box-content {
+    
+    margin-bottom: 30px;
+    padding-right: 0;
+}.testimonials-card__quote p {
+    font-size: 17px;
+	
+}
+.Succ-1 p {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.co-in-form{
+	
+	margin-top:30px}
+	
+	.copyright-wrap .container > .row > .col-lg-auto{
+		width:100%;
+		text-align:center
+	}
+	
+	.ss-cjii{
+		padding:10px 0
+	}
+	.hero-style4 .hero-title-span {
+ 
+    font-size: 18px;
+	
+	}
+	.banner-anform .form-group input {
+    height: 44px;
+	       
+	
+	}
+	.banner-anform .form-group i {
+    
+    top: 14px;
+	}
+	.banner-anform .th-btn {
+    height: 44px;
+	 margin-top: 10px;
+	}
+	.widget-area {
+  
+    padding: 65px 0 0px;
+	}
+	
+ 
+
+.banner-formmain {
+ 
+    text-align: center;
+}
+.footer-widget {
+    margin-bottom: 30px;
+}
+.foot-head-text {
+    padding-bottom: 0;
+}
+}
+
+
+
+@media only screen and (max-width: 575.98px) {
+	.footer-social-links-gold ul li a {
+    width: 30px;
+    height: 30px;
+	}
+	.About-menu li a {
+  
+    display: block;
+       padding: 12px 12px;
+    width: 100%;
+}
+
+.About-menu li {
+    display: block;
+    margin: 0px 0px 6px;
+    list-style: none;
+    position: relative;
+}
+.corrp-sebox-content h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+.ouu-box-img img {
+    width: 56px;
+    margin-bottom: 0;
+    height: 53px;
+}
+	.footer-social-links-gold ul {
+   
+    gap: 7px;
+    
+}
+	.foot-head-text {
+    padding-bottom: 0;
+}
+	.footer-widget {
+    margin-bottom: 30px;
+} 
+
+.header-logo img {
+    height: 35px;
+    
+}
+.sticky-wrapper.sticky .header-logo img {
+    height: 35px;
+ 
+}
+.header-logo {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.hero-style4 .hero-title {
+   
+    font-size: 30px;
+}
+.banner-anform .form-group input {
+    margin-bottom: 5px;	
+}
+
+img.bann-img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top left;
+    min-height:650px
+}
+.counter-card .box-number {
+   
+    font-size: 27px;
+}
+
+.counter-card .box-text {
+    
+    font-size: 18px;
+}
+.blog-card .box-img img {
+    height: auto;
+	
+}
+.destimations-three .single-offer-thumb img {
+ 
+    height: auto;
+	
+}
+.sec-title.style2 {
+        font-size: 30px;
+    }
+.th-btn{
+padding: 14px 28px;
+
+}
+
+.crr-btngroup{
+	        gap: 8px;
+}
+.bbsbtn-grouup{
+	        justify-content: center !important;
+			        gap: 8px;
+}
+
+.bbsbtn-grouup .th-btn {
+        padding: 14px 28px;
+        font-size: 13px;
+    }
+	
+	.hero-style4 .hero-style4-p p {
+    font-size: 15px;
+    line-height: 21px;
+    color: #fff;
+    text-shadow: 0px 5px 20px #040404;
+}
+.follow-uu {
+    font-size: 16px;
+	
+}
+.footer-logo-gold img {
+    height: 34px;
+}
+
+.booo-auto{
+	display:none!important
+}
+.counter-card .box-number span {
+    font-size: 33px;
+}
+    .counter-card .box-text {
+        font-size: 16px;
+    }
+	.counter-card{
+		padding:20px 8px
+	}
+	
+	.job-seekers-box {
+ 
+    padding: 30px 15px;
+	}
+	
+.employers-box{
+  padding: 30px 15px;
+}
+.job-seekers-box li {
+  font-size: 15px;	
+    
+    padding-left: 34px;
+    
+    padding-top: 1px;
+}
+.employers-box li{
+ font-size: 15px;	
+    
+    padding-left: 34px;
+    
+    padding-top: 1px;
+ 
+}
+.employers-box-i {
+ 
+    width: 30px;
+    height: 30px;
+	
+}
+.job-seekers-box-i{
+	 
+    width: 30px;
+    height: 30px;
+}
+.job-oo1{
+	order:1
+}
+.job-oo2{
+	order:2
+}
+.jobbsed-img  {
+	margin-top:20px
+}
+.ouu-box {
+    
+    padding: 20px 10px;
+}
+.ouu-box-content h3 {
+    font-size: 20px;
+}
+.ss-bb-box-content {
+    
+    margin-bottom: 30px;
+    padding-right: 0;
+}.testimonials-card__quote p {
+    font-size: 17px;
+	
+}
+.Succ-1 p {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.co-in-form{
+	
+        margin-top: 30px;
+        padding: 24px 15px;}
+	
+	.copyright-wrap .container > .row > .col-lg-auto{
+		width:100%;
+		text-align:center
+	}
+	
+	.ss-cjii{
+		padding:10px 0
+	}
+	.hero-style4 .hero-title-span {
+ 
+    font-size: 18px;
+	
+	}
+	.banner-anform .form-group input {
+    height: 44px;
+	       
+	
+	}
+	.banner-anform .form-group i {
+    
+    top: 14px;
+	}
+	.banner-anform .th-btn {
+    height: 44px;
+	 margin-top: 10px;
+	}
+	.widget-area {
+  
+    padding: 65px 0 0px;
+	}
+	
+ 
+
+.banner-formmain {
+ 
+    text-align: center;
+}
+}
+@media only screen and (max-width: 374.98px) {
+	    .header-logo img {
+        height: 29px;
+    }
+	    .sticky-wrapper.sticky .header-logo img {
+         height: 29px;
+    }
+	    .bbsbtn-grouup .th-btn {
+        padding: 14px 14px;
+        font-size: 13px;
+    }
+	
+	    img.bann-img {
+        width: 100%;
+        height: 100% !important;
+        object-fit: cover;
+        object-position: top left;
+        min-height: 690px;
+    }
+}

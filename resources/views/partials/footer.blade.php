@@ -1,0 +1,120 @@
+  <!-- Footer -->
+        <footer class="footer-wrapper footer-layout1">
+            <div class="widget-area">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        
+                        <div class="col-md-6 col-xl-3 col-lg-3 col-sm-6">
+                            <div class="widget newsletter-widget footer-widget">
+                                <div class="footer-logo-gold">
+                                    <a href=""><img style="width: 280px; height: auto;" src="{{asset('img\logo\primary-logo.png')}}" alt="logo"></a>
+                                </div>
+                                <div class="as-widget-contact">
+                                    <div class="as-widget-about mt-15">
+                                        <p class="footer-info">
+                                            <i class="fas fa-phone"></i>
+                                            <a href="tel:+91 9747532827" class="info-box_link">+91 9747532827</a>
+                                        </p>
+                                        <p class="footer-info">
+                                            <i class="fas fa-envelope"></i>
+                                            <a href="mailto:info@thepharmajobs.com" class="info-box_link">info@pharmahealthcarejobs.com</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="footer-social-links-gold">
+                                    <ul>
+                                        <li><a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class=" "><img src="{{asset('img/twitter.png')}}"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-auto col-sm-6">
+                            <div class="widget widget_nav_menu footer-widget">
+                                <h3 class="widget_title">Quick Links</h3>
+                                <div class="menu-all-pages-container">
+                                    <ul class="menu">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Candidates</a></li>
+                                        <li><a href="#">Employers</a></li>
+                                        <li><a href="#">FAQS</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-auto col-sm-6">
+                            <div class="widget widget_nav_menu footer-widget">
+                                <h3 class="widget_title">Candidates</h3>
+                                <div class="menu-all-pages-container">
+                                    <ul class="menu">
+                                        <li><a href="#">Job Search</a></li>
+                                        <li><a href="#">Register</a></li>
+                                        <li><a href="#">Login</a></li>
+                                        <li><a href="#">Register CV</a></li>
+                                        <li><a href="#">Our Packages</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-auto col-sm-6">
+                            <div class="widget widget_nav_menu footer-widget">
+                                <h3 class="widget_title">Employers</h3>
+                                <div class="menu-all-pages-container">
+                                    <ul class="menu">
+                                        <li><a href="#">Registration</a></li>
+                                        <li><a href="#">Post Job</a></li>
+                                        <li><a href="#">Edit Profile</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-auto col-sm-6">
+                            <div class="widget widget_nav_menu footer-widget">
+                                <h3 class="widget_title">Job Categories</h3>
+                                <div class="menu-all-pages-container">
+                                    <ul class="menu">
+                                        <li><a href="#">Pharma</a></li>
+                                        <li><a href="#">Medical (Doctors)</a></li>
+                                        <li><a href="#">Para-Medical & General</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright-wrap">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-auto">
+                            <p class="copyright-text">
+                                Copyright <i class="fal fa-copyright"></i> 2026
+                                <a href="index.html">Pharma Healthcare Jobs</a>. All Rights Reserved. Web Designed By <a href="https://www.techsoftweb.com/" target="_blank"> Techsoft</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-auto">
+                            <div class="tt-links">
+                                <a href="#">Terms & Conditions</a>
+                                <a href="#">Privacy Policy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+
+
+
+         

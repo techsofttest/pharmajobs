@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+use Illuminate\Support\Str;
+
 class Job extends Model
 {
     protected $table = 'job_postings';
@@ -13,6 +17,12 @@ class Job extends Model
         'expires_at' => 'date',
         'is_active' => 'boolean',
     ];
+
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
      public function company()
     {
@@ -33,6 +43,33 @@ class Job extends Model
     public function createdBy(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(JobApplication::class,'job_posting_id');
+    }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($job) {
+
+            $slug = Str::slug($job->title);
+
+            $originalSlug = $slug;
+            $count = 1;
+
+            while (self::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count;
+                $count++;
+            }
+
+            $job->slug = $slug;
+        });
+
     }
 
 

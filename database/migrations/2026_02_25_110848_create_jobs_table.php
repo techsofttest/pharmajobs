@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('contact_email');
             $table->string('contact_phone');
 
-            $table->integer('min_experience')->nullable();
+            $table->string('min_experience')->nullable();
             $table->integer('max_experience')->nullable();
             $table->integer('max_age')->nullable();
 

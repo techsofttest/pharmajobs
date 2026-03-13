@@ -36,4 +36,12 @@ class Category extends Model
 
     }
 
+    public function designations()
+    {
+        return $this->hasMany(Designation::class);
+    }
+
+    
+
+
 }
