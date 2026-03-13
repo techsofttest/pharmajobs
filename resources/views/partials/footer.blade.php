@@ -37,12 +37,16 @@
                                 <h3 class="widget_title">Quick Links</h3>
                                 <div class="menu-all-pages-container">
                                     <ul class="menu">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Candidates</a></li>
-                                        <li><a href="#">Employers</a></li>
-                                        <li><a href="#">FAQS</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                         <li><a href="{{url('/')}}">Home</a></li>
+
+                                        <li><a href="{{url('about')}}">About Us</a></li>
+
+                                        <li><a href="{{route('jobs')}}">Browse Jobs</a></li>
+
+                                        <li><a href="{{url('faq')}}">FAQS</a></li>
+
+                                        <li><a href="{{url('contact')}}">Contact Us</a></li>
+
                                     </ul>
                                 </div>
                             </div>

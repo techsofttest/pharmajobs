@@ -28,7 +28,7 @@
 
                         
 
-                        @include('components.searchbar')
+                        
 
 
                     
