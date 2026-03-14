@@ -102,21 +102,10 @@
 <td>
 <div class="table-actions">
 
-<a href="{{ route('employer.jobs.show',$job->id) }}" class="tbl-btn">
-<i class="fa-solid fa-eye"></i>
-</a>
-
 <a href="{{ route('employer.jobs.edit', $job->id) }}" class="tbl-btn">
 <i class="fa-solid fa-pen"></i>
 </a>
 
-<form action="" method="POST" style="display:inline;">
-@csrf
-@method('DELETE')
-<button type="submit" class="tbl-btn danger">
-<i class="fa-solid fa-trash"></i>
-</button>
-</form>
 
 </div>
 </td>

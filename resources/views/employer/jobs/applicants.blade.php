@@ -61,9 +61,13 @@
 
 <td>
 
-<a href="#" class="tbl-btn">
-<i class="fa-solid fa-eye"></i> View
+@if($app->employee->employee?->cv)
+<a href="{{ asset('storage/' . $app->employee->employee->cv) }}" class="tbl-btn" download>
+<i class="fa-solid fa-download"></i> Download CV
 </a>
+@else
+<span class="text-muted small">No CV uploaded</span>
+@endif
 
 </td>
 

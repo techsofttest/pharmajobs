@@ -27,7 +27,7 @@
       <div>
         <div class="section-header">
           <div class="section-title">Recent Jobs</div>
-          <a href="#" class="section-action" onclick="showPage('jobs', null)">View all →</a>
+          
         </div>
 
         <div class="card-box">
@@ -120,7 +120,7 @@
     <div style="margin-top: 24px;">
       <div class="section-header">
         <div class="section-title">Latest Applicants</div>
-        <a href="#" class="section-action" onclick="showPage('applicants', null)">View all →</a>
+        
       </div>
       <div class="card-box">
 

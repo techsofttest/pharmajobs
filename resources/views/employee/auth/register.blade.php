@@ -2,6 +2,16 @@
 
 @section('head_metas')
 
+<style>
+
+    .select2-container--default .select2-search--inline .select2-search__field
+    {
+    min-height: unset;
+    height: 0;
+    }
+
+</style>
+
 @endsection
 
 

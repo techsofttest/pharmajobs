@@ -46,7 +46,7 @@ class JobController extends Controller
 
         $job = Job::where('created_by_type',$employer->getMorphClass())
             ->where('created_by_id',$employer->id)
-            ->with(['applications.employee'])
+            ->with(['applications.employee.employee'])
             ->findOrFail($job_id);
 
         $applications = $job->applications;

@@ -961,6 +961,23 @@
           </div>
           @endif
 
+
+          @if($job->expires_at)
+          <div class="meta-item">
+              <div class="meta-icon">
+                  <i class="fa-solid fa-user"></i>
+              </div>
+
+              <div>
+                  <div class="meta-label">Last Date</div>
+
+                  <div class="meta-value">
+                    {{ $job->expires_at->format('d M Y') }}
+                  </div>
+              </div>
+          </div>
+          @endif
+
          
         </div>
 

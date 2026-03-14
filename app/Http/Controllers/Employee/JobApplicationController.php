@@ -31,7 +31,15 @@ class JobApplicationController extends Controller
         'profile_id' => $employee->id
     ]);
 
-    return back()->with('success','Application submitted successfully');
+    $message = 'Application submitted successfully';
+    
+    // Check if the job was posted by an employer and if their designation is HR
+    $creator = $job->createdBy;
+    if ($creator && $creator->employer?->designation !== 'hr') {
+        $message = 'Contact details unlocked successfully';
+    }
+
+    return back()->with('success', $message);
     }
 
 
