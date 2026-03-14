@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="text-center">
-                                <p class="small text-muted mb-0">Don't have an account? <a href="{{ route('employee.register') }}" class="fw-bold text-decoration-none" style="color: var(--theme-color);">Register Now</a></p>
+                                <p class="small text-muted mb-0">Don't have an account? <a href="{{ route('register.type') }}" class="fw-bold text-decoration-none" style="color: var(--theme-color);">Register Now</a></p>
                             </div>
                         </form>
                     </div>

@@ -103,10 +103,10 @@ value="{{ $employee->employee->qualification }}">
 
 <div class="col-md-12 form-group mb-3">
 
-@if($employee->cv)
+@if($employee->employee?->cv)
 <p class="mb-2">
 Current Resume :
-<a href="{{ asset('storage/'.$employee->cv) }}" target="_blank">
+<a href="{{ asset('storage/'.$employee->employee->cv) }}" target="_blank">
 View Resume
 </a>
 </p>

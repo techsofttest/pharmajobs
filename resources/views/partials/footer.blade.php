@@ -54,14 +54,12 @@
 
                         <div class="col-md-6 col-lg-auto col-sm-6">
                             <div class="widget widget_nav_menu footer-widget">
-                                <h3 class="widget_title">Candidates</h3>
+                                <h3 class="widget_title">Employees</h3>
                                 <div class="menu-all-pages-container">
                                     <ul class="menu">
-                                        <li><a href="#">Job Search</a></li>
-                                        <li><a href="#">Register</a></li>
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register CV</a></li>
-                                        <li><a href="#">Our Packages</a></li>
+                                        <li><a href="{{route('employee.dashboard')}}">Dashboard</a></li> 
+                                        <li><a href="{{route('employee.profile.edit')}}">Edit Profile</a></li> 
+                                        <li><a href="{{route('employee.password')}}">Change Password</a></li> 
                                     </ul>
                                 </div>
                             </div>
@@ -72,9 +70,12 @@
                                 <h3 class="widget_title">Employers</h3>
                                 <div class="menu-all-pages-container">
                                     <ul class="menu">
-                                        <li><a href="#">Registration</a></li>
-                                        <li><a href="#">Post Job</a></li>
-                                        <li><a href="#">Edit Profile</a></li>
+
+                                        <li><a href="{{route('employer.dashboard')}}">Dashboard</a></li>
+                                        <li><a href="{{route('employer.jobs.index')}}">View My Jobs</a></li>
+                                        <li><a href="{{route('employer.jobs.create')}}">Post Job</a></li>
+                                        <li><a href="{{route('employer.profile.edit')}}">Edit Profile</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -85,9 +86,9 @@
                                 <h3 class="widget_title">Job Categories</h3>
                                 <div class="menu-all-pages-container">
                                     <ul class="menu">
-                                        <li><a href="#">Pharma</a></li>
-                                        <li><a href="#">Medical (Doctors)</a></li>
-                                        <li><a href="#">Para-Medical & General</a></li>
+                                        <li><a href="javascript:void(0);">Pharma</a></li>
+                                        <li><a href="javascript:void(0);">Medical (Doctors)</a></li>
+                                        <li><a href="javascript:void(0);">Para-Medical & General</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,13 +104,13 @@
                         <div class="col-lg-auto">
                             <p class="copyright-text">
                                 Copyright <i class="fal fa-copyright"></i> 2026
-                                <a href="index.html">Pharma Healthcare Jobs</a>. All Rights Reserved. Web Designed By <a href="https://www.techsoftweb.com/" target="_blank"> Techsoft</a>
+                                <a href="{{route('home')}}">Pharma Healthcare Jobs</a>. All Rights Reserved. Web Designed By <a href="https://www.techsoftweb.com/" target="_blank"> Techsoft</a>
                             </p>
                         </div>
                         <div class="col-lg-auto">
                             <div class="tt-links">
-                                <a href="#">Terms & Conditions</a>
-                                <a href="#">Privacy Policy</a>
+                                <a href="javascript:void(0);">Terms & Conditions</a>
+                                <a href="javascript:void(0);">Privacy Policy</a>
                             </div>
                         </div>
                     </div>

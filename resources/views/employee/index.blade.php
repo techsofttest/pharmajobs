@@ -29,7 +29,7 @@
       <div>
         <div class="section-header">
           <div class="section-title">Recently Applied</div>
-          <a href="#" class="section-action" onclick="showPage('jobs', null)">View all →</a>
+          
         </div>
         <div class="card-box">
           <div class="table-wrapper">
@@ -37,6 +37,8 @@
               <thead>
                 <tr>
                   <th>Job Title</th>
+                  <th>Company</th>
+                  <th>Location</th>
                   <th>Applied On</th>
                 </tr>
               </thead>
@@ -48,17 +50,31 @@
 <tr>
 
 <td>
-<div class="job-title-cell">{{ $job->title }}</div>
+
+<div class="job-title-cell">{{ $job->job->title ?? '' }}</div>
 
 <div class="job-dept">
-{{ $job->designation->name ?? '' }}
+{{ $job->job->designation->name ?? '' }}
 </div>
+
+</td>
+
+<td>
+
+<div class="job-title-cell">{{ $job->job->company->name ?? '' }}</div>
+
+</td> 
+
+<td>
+
+<div class="job-title-cell">{{ $job->job->districts->pluck('name')->implode(', ') }}</div>
+
 </td>
 
 <td>
 <span class="applicants-count">
-<i class="fa-solid fa-user-group"></i>
-{{ $job->created_at }}
+<i class="fa-solid fa-calendar"></i>
+{{ $job->created_at->format('d m Y') }}
 </span>
 </td>
 

@@ -109,12 +109,10 @@
                                             <a href="javascript:void(0);">Employee</a>
 
                                             <ul class="sub-menu">
-
-                                                <li><a href="#">Job Search</a></li>
-                                                <li><a href="{{route('employee.dashboard')}}">Dashboard</a></li> 
-                                                <li><a href="{{route('employee.profile.edit')}}">Edit Profile</a></li> 
-                                                <li><a href="{{route('employee.password')}}">Change Password</a></li> 
-                                                <li><a href="#">Our Packages</a></li>
+                                                
+                                            <li><a href="{{route('employee.dashboard')}}">Dashboard</a></li> 
+                                            <li><a href="{{route('employee.profile.edit')}}">Edit Profile</a></li> 
+                                            <li><a href="{{route('employee.password')}}">Change Password</a></li> 
 
                                             </ul>
 
