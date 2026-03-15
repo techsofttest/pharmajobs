@@ -51,7 +51,7 @@ class JobResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ApplicationsRelationManager::class,
         ];
     }
 
