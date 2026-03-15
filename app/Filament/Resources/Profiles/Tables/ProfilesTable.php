@@ -14,7 +14,33 @@ class ProfilesTable
     {
         return $table
             ->columns([
-                //
+                \Filament\Tables\Columns\TextColumn::make('first_name')
+                    ->label('First Name')
+                    ->searchable()
+                    ->sortable(),
+                \Filament\Tables\Columns\TextColumn::make('last_name')
+                    ->label('Last Name')
+                    ->searchable()
+                    ->sortable(),
+                \Filament\Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->sortable(),
+                \Filament\Tables\Columns\TextColumn::make('phone')
+                    ->label('Phone')
+                    ->searchable(),
+                \Filament\Tables\Columns\TextColumn::make('role')
+                    ->label('Role')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'employer' => 'success',
+                        'employee' => 'primary',
+                        default => 'gray',
+                    })
+                    ->sortable(),
+                \Filament\Tables\Columns\ToggleColumn::make('is_active')
+                    ->label('Active')
+                    ->sortable(),
             ])
             ->filters([
                 //
