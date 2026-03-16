@@ -106,7 +106,7 @@
 
                         <div class="col-md-6 form-group mb-3">
                             <label class="fw-bold mb-2 text-dark">Preferred Location 1 <span class="text-danger">*</span></label>
-
+                           
                             <select class="form-select form-control" name="locations[]" required>
                                 <option value="">Select Location</option>
 
@@ -122,7 +122,7 @@
                         <div class="col-md-6 form-group mb-3">
 
                             <label class="fw-bold mb-2 text-dark">Preferred Location 2 <span class="text-danger">*</span></label>
-
+                            
                             <select class="form-select form-control" name="locations[]" required>
                                 <option value="">Select Location</option>
 
@@ -135,10 +135,14 @@
                         </div>
 
                         <div class="col-md-12 form-group mb-3 text-center">
-
+                      
                         <small class="text-danger d-flex align-items-center mt-1">
                         <i class="fa-solid fa-triangle-exclamation me-2"></i>
                             The prefered locations cannot be changed later!
+                        </small>
+
+                        <small class="mt-1">
+                            Location not found? contact <a href="tel:+91 9747532827">+91 9747532827</a> to add new location
                         </small>
 
                         </div>
