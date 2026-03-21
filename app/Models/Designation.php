@@ -42,6 +42,11 @@ class Designation extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'designation_locations');
+    }
+
 
 
 }

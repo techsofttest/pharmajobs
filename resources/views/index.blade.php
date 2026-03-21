@@ -64,7 +64,7 @@
 <h1 class="hero-title" >Find your dream job now</h1>
  
 
-
+@include('components.searchbar')
 
 
 	

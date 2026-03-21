@@ -15,7 +15,7 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        $companies = Company::where('is_active', true)->get();
+        $companies = Company::where('is_active', true)->orderBy('name')->get();
 
         return view('employer.auth.register', compact('companies'));
     }

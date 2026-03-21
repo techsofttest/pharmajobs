@@ -1,6 +1,6 @@
  <div class="banner-anform">
  
-        <form action="#" method="post" class="booking-form   ">
+        <form action="#" method="post" class="booking-form mb-auto">
 						
 		<div class="row">
 		<div class="col-lg-4 col-md-4 col-sm-6">
@@ -20,20 +20,22 @@
 
 
 		</div>
-			<div class="col-lg-4 col-md-4 col-sm-6">
+
+
+		<div class="col-lg-4 col-md-4 col-sm-6">
 		
-                            <div class="form-group ">
+            <div class="form-group ">
                               
-                             <i class="fas fa-pencil " aria-hidden="true"></i>   
-							 
+            <i class="fas fa-pencil " aria-hidden="true"></i>   
 			<select id="designation">
             <option value="">Select 	Designation</option>
-        </select>
+            </select> 
 							 
-							 
-                            </div>
+            </div>
 		
 		</div>
+
+
 		<div class="col-lg-4 col-md-4 col-sm-6">
 		
                             <div class="form-group ">
@@ -47,12 +49,16 @@
                 </div>
 		
 		</div>
-			<div class="col-auto">
-		  <div class="message-btn">
-                                <button type="submit" class="th-btn style2 w-100">   <i class="fa fa-search" aria-hidden="true"></i>Search </button>
-                            </div>
-		
+
+
+		<div class="col-auto">
+		<div class="message-btn">
+
+            <button type="submit" class="th-btn style2 w-100">   <i class="fa fa-search" aria-hidden="true"></i>Search </button>
+        
+        </div>
 		</div>
+        
 			</div>
 						
 						

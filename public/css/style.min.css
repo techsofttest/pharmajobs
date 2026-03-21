@@ -5831,3 +5831,16 @@ textarea.form-control {
 /* 4. Style the Muted Cross/Check Icon (Unavailable) */
 
 /* Optional: If you want the text of unavailable items to be muted too */
+
+
+
+.select2-container .select2-selection--single
+{
+    height: 50px;
+    padding: 10px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow
+{
+    top: 25%;
+}

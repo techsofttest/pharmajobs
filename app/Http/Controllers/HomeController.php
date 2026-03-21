@@ -9,7 +9,7 @@ use App\Models\Job;
 use App\Models\Category;
 use App\Models\Package;
 use App\Models\State;
-use App\Models\District;
+use App\Models\Location;
 
 class HomeController extends Controller
 {
@@ -27,7 +27,7 @@ class HomeController extends Controller
 
     $data['packages'] = Package::with('category.designations')->get();
 
-    $data['jobs'] = Job::active()->with(['company','districts'])->latest()->get();
+    $data['jobs'] = Job::active()->with(['company','locations'])->latest()->get();
 
     return view('index',$data);
 

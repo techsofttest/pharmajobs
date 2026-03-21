@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Designation;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +16,44 @@ class RegisterController extends Controller
     public function create()
     {
         $categories = \App\Models\Category::all();
-        $districts = \App\Models\District::orderBy('name','asc')->get();
-        return view('employee.auth.register', compact('categories', 'districts'));
+        //$locations = \App\Models\Location::orderBy('name','asc')->get();
+        return view('employee.auth.register', compact('categories'));
+    }
+
+
+    public function locations(Request $request, $designationId)
+    {
+        $designation = Designation::with('locations')->findOrFail($designationId);
+
+        // If all locations allowed
+        if ($designation->all_locations) {
+            $locations = Location::query();
+        } else {
+            $locations = $designation->locations(); // pivot relation
+        }
+
+        // Select2 search
+        if ($search = $request->q) {
+            $locations->where('name', 'like', "%{$search}%");
+        }
+
+        $locations->orderBy('name','asc');
+
+        $locations->withCount([
+            'jobs as jobs_count' => function ($q) use ($designationId) {
+                $q->where('designation_id', $designationId);
+            }
+        ]);
+
+        return response()->json(
+            $locations->limit(20)->get()->map(function ($loc) {
+                return [
+                    'id' => $loc->id,
+                    'text' => $loc->name . ' (' . $loc->jobs_count . ')',
+                    'jobs_count' => $loc->jobs_count
+                ];
+            })
+        );
     }
 
     public function store(Request $request)
@@ -61,9 +98,6 @@ class RegisterController extends Controller
                 'profile_id' => $profile->id,
                 'category_id' => $request->category_id,
                 'designation_id' => $request->designation_id,
-                'speciality' => $request->speciality,
-                'qualification' => $request->qualification,
-                'yoe' => $request->yoe,
                 'cv' => $cvPath,
             ]);
 

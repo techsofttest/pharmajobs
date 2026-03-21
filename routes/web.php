@@ -40,13 +40,21 @@ Route::middleware('guest:employee,employer')->group(function () {
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
+
+//EMpoyee locations ajax
+Route::get('/designations/{designation}/locations', [App\Http\Controllers\Employee\RegisterController::class, 'locations']);
+    
+
 // Employee Routes
 Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
     // Auth Routes
     Route::middleware('guest:employee')->group(function () {
         Route::get('register', [App\Http\Controllers\Employee\RegisterController::class, 'create'])->name('register');
         Route::post('register', [App\Http\Controllers\Employee\RegisterController::class, 'store'])->name('register.store');
+    
+       
     });
+
 
     // Dashboard & Profile
     Route::get('dashboard', function () {
@@ -154,5 +162,5 @@ Route::group(['prefix' => 'employer', 'as' => 'employer.'], function () {
 
     // APIs for dynamic selection
     Route::get('/api/categories/{category}/designations', function (\App\Models\Category $category) {
-        return response()->json($category->designations);
+        return response()->json($category->designations()->orderBy('name', 'asc')->get());
     })->name('api.designations.by_category');

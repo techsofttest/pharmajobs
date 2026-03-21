@@ -14,8 +14,8 @@
 
             <div class="cc-jjjo-content"> 
                 <h3>
-                    <a href="">
-                        {{ $job->title }}
+                    <a href="{{route('job.detail',$job->id)}}">
+                        {{ $job->designation->name }}
                     </a>
                 </h3>
             </div>
@@ -32,8 +32,8 @@
                 <i class="fa fa-location-dot"></i>
                 <b>Locations:</b> 
                 
-                @if($job->districts->count() > 0)
-                    {{ $job->districts->pluck('name')->implode(', ') }}
+                @if($job->locations->count() > 0)
+                    {{ $job->locations->pluck('name')->implode(', ') }}
                 @endif
 
             </li>

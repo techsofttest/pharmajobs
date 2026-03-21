@@ -12,6 +12,10 @@
 
 </style>
 
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
 @endsection
 
 
@@ -107,14 +111,7 @@
                         <div class="col-md-6 form-group mb-3">
                             <label class="fw-bold mb-2 text-dark">Preferred Location 1 <span class="text-danger">*</span></label>
                            
-                            <select class="form-select form-control" name="locations[]" required>
-                                <option value="">Select Location</option>
-
-                                @foreach($districts as $district)
-                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                @endforeach
-
-                            </select>
+                            <select class="form-select location-select" name="locations[]" required></select>
 
                         </div>
 
@@ -123,14 +120,7 @@
 
                             <label class="fw-bold mb-2 text-dark">Preferred Location 2 <span class="text-danger">*</span></label>
                             
-                            <select class="form-select form-control" name="locations[]" required>
-                                <option value="">Select Location</option>
-
-                                @foreach($districts as $district)
-                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                @endforeach
-
-                            </select>
+                            <select class="form-select location-select" name="locations[]" required></select>
 
                         </div>
 
@@ -146,26 +136,10 @@
                         </small>
 
                         </div>
-
-
-
-                                    <div class="col-md-6 form-group mb-3">
-                                        <label class="fw-bold mb-2 text-dark">Speciality</label>
-                                        <input type="text" class="form-control" name="speciality" placeholder="Enter your speciality">
-                                    </div>
-
-                                    <div class="col-md-6 form-group mb-3">
-                                        <label class="fw-bold mb-2 text-dark">Years of Experience</label>
-                                        <input type="text" class="form-control" name="yoe" placeholder="Years of Experience">
-                                    </div>
+                                    
 
                                     <div class="col-md-12 form-group mb-3">
-                                        <label class="fw-bold mb-2 text-dark">Highest Qualification</label>
-                                        <input type="text" class="form-control" name="yoe" placeholder="Enter highest qualification">
-                                    </div>
-
-                                    <div class="col-md-12 form-group mb-3">
-                                        <label class="fw-bold mb-2 text-dark">Resume / CV</label>
+                                        <label class="fw-bold mb-2 text-dark">Resume / CV (You can upload later)</label>
                                         <input type="file" class="form-control pt-2" name="cv" accept=".pdf,.doc,.docx">
                                     </div>
 
@@ -297,6 +271,69 @@ document.querySelectorAll('select[name="locations[]"]').forEach(select => {
 
     });
 });
+</script>
+
+
+
+ <script>
+            document.querySelectorAll('.password-toggle-icon').forEach(item => {
+                item.addEventListener('click', event => {
+                    const icon = event.currentTarget.querySelector('i');
+                    const input = event.currentTarget.previousElementSibling;
+                    if (input.type === "password") {
+                        input.type = "text";
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = "password";
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script>
+
+    let selectedDesignation = null;
+
+    $('#designation_id').on('change', function () {
+        selectedDesignation = $(this).val();
+
+        // Reset both selects
+        $('.location-select').val(null).trigger('change');
+    });
+
+    $('.location-select').select2({
+        placeholder: 'Search Location',
+        ajax: {
+            delay: 250,
+            transport: function (params, success, failure) {
+
+                if (!selectedDesignation) {
+                    alert('Please select designation first');
+                    return;
+                }
+
+                const url = `/designations/${selectedDesignation}/locations?q=${params.data.q || ''}`;
+
+                fetch(url)
+                    .then(res => res.json())
+                    .then(success)
+                    .catch(failure);
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
 </script>
 
 

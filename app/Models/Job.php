@@ -34,9 +34,9 @@ class Job extends Model
         return $this->belongsTo(\App\Models\Designation::class);
     }
 
-    public function districts()
+    public function locations()
     {
-        return $this->belongsToMany(\App\Models\District::class, 'district_job', 'job_id', 'district_id')
+        return $this->belongsToMany(\App\Models\Location::class, 'job_posting_locations', 'job_id', 'location_id')
             ->withTimestamps();
     }
 

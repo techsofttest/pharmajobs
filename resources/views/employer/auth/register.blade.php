@@ -2,6 +2,8 @@
 
 @section('head_metas')
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 
 
@@ -64,16 +66,19 @@
 
 
 
-                                    <div class="col-md-12 form-group mb-3">
-                                        <label class="fw-bold mb-2 text-dark">Company <span class="text-danger">*</span></label>
-                                        <select class="form-select form-control" name="company_id" required>
+                                    <div class="col-md-12 form-group mb-3">     
+                                       <label class="fw-bold mb-2 text-dark">Company <span class="text-danger">*</span></label>
+                                        
+                                        
+                                       <select class="form-select form-control select2" name="company_id" required>
                                             <option value="">Select Company</option>
-                                            
-                                            @foreach($companies as $company)
-                                            <option value="{{$company->id}}">{{$company->name}}</option>
-                                            @endforeach
 
+                                            @foreach($companies as $company)
+                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                            @endforeach
                                         </select>
+
+
                                     </div>
 
 
@@ -160,6 +165,37 @@
 
 @section('footer_extras')
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Select Company",
+            allowClear: true,
+            width: '100%'
+        });
+    });
+</script>
+
+
+ <script>
+            document.querySelectorAll('.password-toggle-icon').forEach(item => {
+                item.addEventListener('click', event => {
+                    const icon = event.currentTarget.querySelector('i');
+                    const input = event.currentTarget.previousElementSibling;
+                    if (input.type === "password") {
+                        input.type = "text";
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = "password";
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+    </script>
 
 
 @endsection

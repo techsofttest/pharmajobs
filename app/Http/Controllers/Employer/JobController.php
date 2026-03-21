@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Designation;
-use App\Models\District;
+use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -59,11 +59,11 @@ class JobController extends Controller
     public function create()
     {
         $designations = Designation::all();
-        $districts = District::all();
+        $locations = Location::all();
 
         return view('employer.jobs.create', compact(
             'designations',
-            'districts'
+            'locations'
         ));
     }
 
@@ -137,15 +137,15 @@ class JobController extends Controller
         }
 
         $designations = Designation::all();
-        $districts = District::all();
+        $locations = Location::all();
 
-        $selectedDistricts = $job->districts->pluck('id')->toArray();
+        $selectedlocations = $job->locations->pluck('id')->toArray();
 
         return view('employer.jobs.edit', compact(
             'job',
             'designations',
-            'districts',
-            'selectedDistricts'
+            'locations',
+            'selectedlocations'
         ));
     }
 

@@ -867,14 +867,20 @@
 
             </div>
             <div>
-              <div class="job-title">{{ $job->title }}</div>
+              <div class="job-title">{{ $job->designation->name }}</div>
               <div class="company-name">
                 at <a href="#">{{ $job->company->name }}</a> &nbsp;·&nbsp; Posted {{ $job->created_at->diffForHumans() }}
               </div>
             </div>
+
+
             <div class="ms-auto d-none d-sm-flex align-items-center gap-2">
+              @if($job->created_at->gt(now()->subDays(5)))
               <span class="badge-new">New</span>
+              @endif
             </div>
+
+
           </div>
         </div>
 
@@ -885,8 +891,8 @@
             <div>
               <div class="meta-label">Locations</div>
               
-            <div class="meta-value"> @if($job->districts->count() > 0)
-                    {{ $job->districts->pluck('name')->implode(', ') }}
+            <div class="meta-value"> @if($job->locations->count() > 0)
+                    {{ $job->locations->pluck('name')->implode(', ') }}
                      @endif
              </div>
 
@@ -1004,7 +1010,7 @@
               ? auth('employee')->user()->employee->locations->pluck('id')->toArray()
               : [];
 
-          $jobLocations = $job->districts->pluck('id')->toArray();
+          $jobLocations = $job->locations->pluck('id')->toArray();
 
           $locationAllowed = count(array_intersect($employeeLocations, $jobLocations)) > 0;
       @endphp
@@ -1100,13 +1106,7 @@
          
         </div>
       </div>
-
-      <!-- connector dot -->
-      <div class="connector">
-        <div class="connector-line"></div>
-        <div class="connector-dot"></div>
-      </div>
-
+    
       <!-- ② BLURRED PREVIEW -->
       <div class="preview-card">
         <div class="preview-inner">
@@ -1333,7 +1333,7 @@
 
             <span class="card-pill"><i class="fa-solid fa-location-dot"></i> 
             @if($job->districts->count() > 0)
-                    {{ $job->districts->pluck('name')->implode(', ') }}
+                    {{ $job->locations->pluck('name')->implode(', ') }}
             @endif
             </span>
 

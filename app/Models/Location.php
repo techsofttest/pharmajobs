@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+use Illuminate\Support\Str;
+
+class Location extends Model
 {
     protected $fillable = ['state_id', 'name', 'slug'];
 
@@ -13,23 +15,24 @@ class District extends Model
         return $this->belongsTo(State::class);
     }
 
+
     protected static function booted(): void
     {
-        static::creating(function ($district) {
-            if (empty($district->slug)) {
-                $district->slug = self::generateUniqueSlug(
-                    $district->name,
-                    $district->state_id
+        static::creating(function ($location) {
+            if (empty($location->slug)) {
+                $location->slug = self::generateUniqueSlug(
+                    $location->name,
+                    $location->state_id
                 );
             }
         });
 
-        static::updating(function ($district) {
-            if ($district->isDirty('name')) {
-                $district->slug = self::generateUniqueSlug(
-                    $district->name,
-                    $district->state_id,
-                    $district->id
+        static::updating(function ($location) {
+            if ($location->isDirty('name')) {
+                $location->slug = self::generateUniqueSlug(
+                    $location->name,
+                    $location->state_id,
+                    $location->id
                 );
             }
         });
@@ -51,6 +54,12 @@ class District extends Model
         }
 
         return $slug;
+    }
+
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_posting_locations');
     }
 
 }

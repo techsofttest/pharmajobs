@@ -100,13 +100,13 @@ required>
 
 <select class="district-select" name="districts[]" multiple required>
 
-@foreach($districts as $district)
+@foreach($locations as $location)
 
 <option
-value="{{ $district->id }}"
-{{ in_array($district->id, $selectedDistricts) ? 'selected' : '' }}>
+value="{{ $location->id }}"
+{{ in_array($location->id, $selectedlocations) ? 'selected' : '' }}>
 
-{{ $district->name }}
+{{ $location->name }}
 
 </option>
 

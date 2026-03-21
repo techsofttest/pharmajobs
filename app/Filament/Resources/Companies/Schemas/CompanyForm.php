@@ -21,8 +21,7 @@ class CompanyForm
                     ->default(null)
                     ->columnSpanFull(),
                 FileUpload::make('logo')
-                    ->image()
-                    ->required(),
+                    ->image(),
             ]);
     }
 }

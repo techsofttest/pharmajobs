@@ -74,8 +74,8 @@
                            
                             <select class="district-select" name="districts[]" multiple required>
 
-                            @foreach($districts as $district)
-                            <option value="{{ $district->id }}">{{ $district->name }}</option>
+                            @foreach($locations as $location)
+                            <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
 
                             </select>

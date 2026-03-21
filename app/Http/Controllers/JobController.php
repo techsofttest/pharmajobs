@@ -35,8 +35,8 @@ class JobController extends Controller
 
         $employee = auth('employee')->user();
 
-        $locationAllowed = $job->districts()
-                                ->whereIn('district_id', [
+        $locationAllowed = $job->locations()
+                                ->whereIn('location_id', [
                                     $employee->location_1,
                                     $employee->location_2
                                 ])

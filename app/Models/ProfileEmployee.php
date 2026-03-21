@@ -27,10 +27,10 @@ class ProfileEmployee extends Model
    {
       
     return $this->belongsToMany(
-        District::class,
+        Location::class,
         'employee_locations',
         'profile_employee_id',
-        'district_id'
+        'location_id'
     );
 
    }
