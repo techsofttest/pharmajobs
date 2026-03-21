@@ -60,10 +60,12 @@ class JobController extends Controller
     {
         $designations = Designation::all();
         $locations = Location::all();
+         $categories = \App\Models\Category::all();
 
         return view('employer.jobs.create', compact(
             'designations',
-            'locations'
+            'locations',
+            'categories'
         ));
     }
 

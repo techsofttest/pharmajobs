@@ -41,7 +41,7 @@
             <li>
                 <i class="fa fa-building"></i> 
                 <b>Company:</b>  
-                <a href="#">
+                <a href="javascript:void(0)">
                     {{ $job->company->name }}
                 </a>
             </li>

@@ -207,6 +207,7 @@
 @endsection
 
 @section('footer_extras')
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const categorySelect = document.getElementById('category_id');

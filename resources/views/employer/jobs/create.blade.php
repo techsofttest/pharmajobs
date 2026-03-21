@@ -33,27 +33,34 @@
 
 
                             <div class="col-md-6 form-group mb-3">
-                            <label class="fw-bold mb-2 text-dark">Speciality</label>
-                            <input type="text" class="form-control" name="job_id">
+                                        <label class="fw-bold mb-2 text-dark">Job Category <span class="">*</span></label>
+                                        <select class="form-select form-control" name="category_id" id="category_id" required>
+                                            <option value="">Select Category</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
                             </div>
 
 
                             <div class="col-md-6 form-group mb-3">
                             <label class="fw-bold mb-2 text-dark">Designation *</label>
-                            <select class="form-control" name="designation_id" required>
-                            <option value="">Select Designation</option>
+                            <select class="form-control" name="designation_id" id="designation_id" required>
 
-                            @foreach($designations as $designation)
-                            <option value="{{ $designation->id }}">{{ $designation->name }}</option>
-                            @endforeach
+                            <option value="">Select Designation</option>
 
                             </select>
                             </div>
 
 
                             <div class="col-md-6 form-group mb-3">
-                            <label class="fw-bold mb-2 text-dark">Division Name *</label>
-                            <input type="text" class="form-control" name="title" required>
+                            <label class="fw-bold mb-2 text-dark">Division Name</label>
+                            <input type="text" class="form-control" name="title">
+                            </div>
+
+                            <div class="col-md-6 form-group mb-3">
+                            <label class="fw-bold mb-2 text-dark">Speciality</label>
+                            <input type="text" class="form-control" name="job_id">
                             </div>
 
 
@@ -160,5 +167,45 @@ $(document).ready(function() {
 
 });
 </script>
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() { 
+    const categorySelect = document.getElementById('category_id');
+    const designationSelect = document.getElementById('designation_id');
+    const locationsSelect = document.getElementById('locations');
+
+    // Fetch dynamic designations based on category
+    categorySelect.addEventListener('change', function() {
+        const categoryId = this.value;
+        
+        designationSelect.innerHTML = '<option value="">Select Designation</option>';
+        designationSelect.disabled = true;
+
+        if (categoryId) {
+            const url = "{{ route('api.designations.by_category', ['category' => ':id']) }}".replace(':id', categoryId);
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    data.forEach(designation => {
+                        const option = document.createElement('option');
+                        option.value = designation.id;
+                        option.textContent = designation.name;
+                        designationSelect.appendChild(option);
+                    });
+                    designationSelect.disabled = false;
+                })
+                .catch(error => console.error('Error fetching designations:', error));
+        }
+    });
+    });
+
+</script>
+
 
 @endsection
