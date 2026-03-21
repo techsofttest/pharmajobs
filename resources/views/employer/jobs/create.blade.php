@@ -77,7 +77,7 @@
 
 
                             <div class="col-md-12 form-group mb-3">
-                            <label class="fw-bold mb-2 text-dark">Headquaters *</label>
+                            <label class="fw-bold mb-2 text-dark">Headquaters / Locations  *</label>
                            
                             <select class="district-select" name="districts[]" multiple required>
 

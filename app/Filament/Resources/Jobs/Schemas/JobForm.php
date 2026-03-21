@@ -52,12 +52,12 @@ class JobForm
                             ->required(),
                     ]),
 
-                Section::make('Districts')
-                    ->label('Headquaters')
+                Section::make('Area')
+                    ->label('Headquaters/Locations')
                     ->columns(1)
                     ->schema([
-                        Select::make('districts')
-                            ->relationship('districts', 'name')
+                        Select::make('locations')
+                            ->relationship('locations', 'name')
                             ->multiple()
                             ->searchable()
                             ->preload()
