@@ -19,10 +19,10 @@
                         <div class="title-area   mb-30">
                         
                             <h2 class="sec-title style2 split-text  ">
-                                Quality Assurance Officer Jobs
+                                Browse All Jobs
                             </h2>
                             
-                                <p class="mt-3" style="color: #535353;"> Explore elite Quality Assurance opportunities and choose the career path <br> that best fits your professional goals and dreams.</p>
+                                <p class="mt-3" style="color: #535353;"> Explore opportunities and choose the career path <br> that best fits your professional goals and dreams.</p>
 
                         </div>
 
