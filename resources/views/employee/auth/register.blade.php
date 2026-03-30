@@ -208,11 +208,15 @@
 
 @section('footer_extras')
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const categorySelect = document.getElementById('category_id');
     const designationSelect = document.getElementById('designation_id');
-    const locationsSelect = document.getElementById('locations');
+    const locationSelects = $('.location-select');
+
+    let selectedDesignation = null;
 
     // Fetch dynamic designations based on category
     categorySelect.addEventListener('change', function() {
@@ -220,6 +224,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         designationSelect.innerHTML = '<option value="">Select Designation</option>';
         designationSelect.disabled = true;
+        selectedDesignation = null;
+        
+        // Reset location selects
+        locationSelects.val(null).trigger('change');
+        locationSelects.empty();
 
         if (categoryId) {
             const url = "{{ route('api.designations.by_category', ['category' => ':id']) }}".replace(':id', categoryId);
@@ -241,101 +250,77 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Limit multi-select locations to max 2
-    locationsSelect.addEventListener('change', function() {
-        const selectedOptions = Array.from(this.options).filter(opt => opt.selected);
-        if (selectedOptions.length > 2) {
-            // Unselect the last chosen item that exceeded limit
-            // Note: behavior varies on standard select multples. A simple alert or forcing unselect:
-            alert('You can only select up to 2 preferred locations.');
-            // Revert last selection
-            this.options[this.selectedIndex].selected = false;
-        }
-    });
-});
-</script>
-
-<script>
-document.querySelectorAll('select[name="locations[]"]').forEach(select => {
-    select.addEventListener('change', function () {
-
-        let values = Array.from(document.querySelectorAll('select[name="locations[]"]'))
-            .map(s => s.value)
-            .filter(v => v);
-
-        let unique = new Set(values);
-
-        if(values.length !== unique.size){
-            alert('You already selected this location');
-            this.value = '';
-        }
-
-    });
-});
-</script>
-
-
-
- <script>
-            document.querySelectorAll('.password-toggle-icon').forEach(item => {
-                item.addEventListener('click', event => {
-                    const icon = event.currentTarget.querySelector('i');
-                    const input = event.currentTarget.previousElementSibling;
-                    if (input.type === "password") {
-                        input.type = "text";
-                        icon.classList.remove('fa-eye');
-                        icon.classList.add('fa-eye-slash');
-                    } else {
-                        input.type = "password";
-                        icon.classList.remove('fa-eye-slash');
-                        icon.classList.add('fa-eye');
-                    }
-                });
-            });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
-<script>
-
-    let selectedDesignation = null;
-
-    $('#designation_id').on('change', function () {
+    // Handle designation change
+    $('#designation_id').on('change', function() {
         selectedDesignation = $(this).val();
 
-        // Reset both selects
-        $('.location-select').val(null).trigger('change');
+        // Reset both selects when designation changes
+        locationSelects.each(function () { 
+            $(this).val(null).trigger('change'); // clear selection
+            $(this).empty(); // remove old options
+        });
     });
 
-    $('.location-select').select2({
+    // Initialize Select2 for locations
+    locationSelects.select2({
         placeholder: 'Search Location',
+        allowClear: true,
         ajax: {
-            delay: 250,
-            transport: function (params, success, failure) {
-
-                if (!selectedDesignation) {
-                    alert('Please select designation first');
-                    return;
-                }
-
-                const url = `/designations/${selectedDesignation}/locations?q=${params.data.q || ''}`;
-
-                fetch(url)
-                    .then(res => res.json())
-                    .then(success)
-                    .catch(failure);
+            url: function () {
+                if (!selectedDesignation) return null;
+                return `/designations/${selectedDesignation}/locations`;
             },
-            processResults: function (data) {
+            delay: 250,
+            data: function (params) {
                 return {
-                    results: data
+                    q: params.term, // search term
+                    page: params.page || 1
                 };
-            }
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+                return {
+                    results: data.results,
+                    pagination: {
+                        more: data.pagination.more
+                    }
+                };
+            },
+            cache: true
+        }
+    }).on('select2:select', function (e) {
+        // Prevent duplicate selection between the two inputs
+        let currentValues = [];
+        locationSelects.each(function() {
+            let val = $(this).val();
+            if (val) currentValues.push(val);
+        });
+
+        let duplicates = currentValues.filter((item, index) => currentValues.indexOf(item) !== index);
+        
+        if (duplicates.length > 0) {
+            alert('You already selected this location');
+            $(this).val(null).trigger('change');
         }
     });
 
+    // Password toggle
+    document.querySelectorAll('.password-toggle-icon').forEach(item => {
+        item.addEventListener('click', event => {
+            const icon = event.currentTarget.querySelector('i');
+            const input = event.currentTarget.previousElementSibling;
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+});
 </script>
-
 
 @endsection

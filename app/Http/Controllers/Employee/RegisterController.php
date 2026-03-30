@@ -20,41 +20,56 @@ class RegisterController extends Controller
         return view('employee.auth.register', compact('categories'));
     }
 
+public function locations(Request $request, $designationId)
+{
+    $designation = Designation::findOrFail($designationId);
 
-    public function locations(Request $request, $designationId)
-    {
-        $designation = Designation::with('locations')->findOrFail($designationId);
+    $locationsQuery = Location::query();
 
-        // If all locations allowed
-        if ($designation->all_locations) {
-            $locations = Location::query();
-        } else {
-            $locations = $designation->locations(); // pivot relation
-        }
-
-        // Select2 search
-        if ($search = $request->q) {
-            $locations->where('name', 'like', "%{$search}%");
-        }
-
-        $locations->orderBy('name','asc');
-
-        $locations->withCount([
-            'jobs as jobs_count' => function ($q) use ($designationId) {
-                $q->where('designation_id', $designationId);
-            }
-        ]);
-
-        return response()->json(
-            $locations->limit(20)->get()->map(function ($loc) {
-                return [
-                    'id' => $loc->id,
-                    'text' => $loc->name . ' (' . $loc->jobs_count . ')',
-                    'jobs_count' => $loc->jobs_count
-                ];
-            })
-        );
+    if ($designation->all_locations != 1) {
+        $locationsQuery->whereIn('locations.id', function($q) use ($designationId) {
+            $q->select('location_id')
+              ->from('designation_locations')
+              ->where('designation_id', $designationId);
+        });
     }
+
+    if ($search = $request->q) {
+        $locationsQuery->where('locations.name', 'like', "%{$search}%");
+    }
+
+    // ✅ select() BEFORE withCount()
+    $locationsQuery->select('locations.id', 'locations.name');
+
+    $locationsQuery->withCount([
+        'jobs as jobs_count' => function ($q) use ($designationId) {
+            $q->where('designation_id', $designationId);
+        }
+    ]);
+
+    $locationsQuery->orderBy('locations.name', 'asc');
+
+    $perPage = 20;
+    $page = $request->page ?? 1;
+
+    $paginated = $locationsQuery->paginate($perPage, ['*'], 'page', $page);
+
+    return response()->json([
+        'results' => $paginated->getCollection()->map(function ($loc) {
+            return [
+                'id'   => $loc->id,
+                //'text' => $loc->name . ' (' . ($loc->jobs_count ?? 0) . ')',
+                'text' => $loc->name . '(0)',
+            ];
+        }),
+        'pagination' => [
+            'more' => $paginated->hasMorePages(),
+        ],
+    ]);
+}
+
+
+
 
     public function store(Request $request)
     {

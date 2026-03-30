@@ -27,6 +27,14 @@ Route::get('/jobs',[JobController::class,'index'])->name('jobs');
 
 Route::get('/jobs/{slug}',[JobController::class,'detail'])->name('job.detail');
 
+//Search
+
+Route::get('/search', [JobController::class,'search'])->name('jobs.search');
+
+Route::get('/api/categories/{category}/designations',[JobController::class,'designationsByCategory']);
+
+Route::get('/api/designations/{designation}/locations',[JobController::class,'locationsByDesignation']);
+
 
 Route::middleware('guest:employee,employer')->group(function () {
     Route::get('/login', [LoginController::class, 'showLogin'])->name('login');

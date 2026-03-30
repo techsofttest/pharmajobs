@@ -67,7 +67,7 @@
 
 <td>
 
-<div class="job-title-cell">{{ $job->job->districts->pluck('name')->implode(', ') }}</div>
+<div class="job-title-cell">{{ $job->job->locations->pluck('name')->implode(', ') }}</div>
 
 </td>
 

@@ -64,8 +64,7 @@
 <h1 class="hero-title" >Find your dream job now</h1>
  
 
-
-
+@php /* @include('components.searchbar') */ @endphp
 
 	
 <div class="btn-group justify-content-center mt-15  crr-btngroup">

@@ -10,6 +10,9 @@ class Designation extends Model
 {
     protected $guarded =[];
 
+    protected $casts = [
+        'all_locations' => 'boolean',
+    ];
 
     public static function booted()
     {

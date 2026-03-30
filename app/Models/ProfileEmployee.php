@@ -30,7 +30,7 @@ class ProfileEmployee extends Model
         Location::class,
         'employee_locations',
         'profile_employee_id',
-        'location_id'
+        'district_id'
     );
 
    }
