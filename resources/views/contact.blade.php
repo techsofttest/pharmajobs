@@ -106,7 +106,7 @@
                                 </div>
                                 <div>
                                     <h6 class="mb-1">Phone Number</h6>
-                                    <p class="text-muted small mb-0"><a href="tel:+911234567890" class="text-muted text-decoration-none hover-orange">+91 123 456 7890</a></p>
+                                    <p class="text-muted small mb-0"><a href="tel:+918137069973" class="text-muted text-decoration-none hover-orange">+91 8137069973</a></p>
                                 </div>
                             </div>
 

@@ -13,7 +13,7 @@
                                     <div class="as-widget-about mt-15">
                                         <p class="footer-info">
                                             <i class="fas fa-phone"></i>
-                                            <a href="tel:+91 9747532827" class="info-box_link">+91 9747532827</a>
+                                            <a href="tel:+918137069973" class="info-box_link">+91 8137069973</a>
                                         </p>
                                         <p class="footer-info">
                                             <i class="fas fa-envelope"></i>

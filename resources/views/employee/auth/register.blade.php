@@ -132,7 +132,7 @@
                         </small>
 
                         <small class="mt-1">
-                            Location not found? contact <a href="tel:+91 9747532827">+91 9747532827</a> to add new location
+                            Location not found? contact <a href="tel:+918137069973">+91 8137069973</a> to add new location
                         </small>
 
                         </div>

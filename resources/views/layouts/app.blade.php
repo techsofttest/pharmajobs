@@ -75,10 +75,10 @@
         <div class="fixedRit">
         <ul>
         
-            <li> <a class="call" href="tel:+974 4037 2807"><img src="{{asset('img/l3.png')}}"></a> </li>
+            <li> <a class="call" href="tel:+918137069973"><img src="{{asset('img/l3.png')}}"></a> </li>
 
             
-            <li> <a  class="whatsapp"  href="https://api.whatsapp.com/send/?phone=+91 9747532827&text=%2AHey     Pharma Healthcare Jobs +&app_absent=0" target="_blank">
+            <li> <a  class="whatsapp"  href="https://api.whatsapp.com/send/?phone=918137069973&text=%2AHey     Pharma Healthcare Jobs +&app_absent=0" target="_blank">
 
             <img src="{{asset('img/l1.png')}}">
 
