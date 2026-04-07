@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PolicyController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterTypeController;
@@ -26,6 +27,18 @@ Route::get('/faq',[FaqController::class,'index'])->name('faq');
 Route::get('/jobs',[JobController::class,'index'])->name('jobs');
 
 Route::get('/jobs/{slug}',[JobController::class,'detail'])->name('job.detail');
+
+
+Route::get('/terms-and-conditions',[PolicyController::class,'terms'])->name('terms-and-conditions');
+
+Route::get('/privacy-policy',[PolicyController::class,'privacy'])->name('privacy');
+
+Route::get('/disclaimer',[PolicyController::class,'disclaimer'])->name('disclaimer');
+
+Route::get('/return-and-refunds',[PolicyController::class,'refund'])->name('refund');
+
+
+
 
 //Search
 

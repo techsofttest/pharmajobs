@@ -109,8 +109,10 @@
                         </div>
                         <div class="col-lg-auto">
                             <div class="tt-links">
-                                <a href="javascript:void(0);">Terms & Conditions</a>
-                                <a href="javascript:void(0);">Privacy Policy</a>
+                                <a href="{{route('terms-and-conditions')}}">Terms & Conditions</a>
+                                <a href="{{route('privacy')}}">Privacy Policy</a>
+                                <a href="{{route('disclaimer')}}">Disclaimer</a>
+                                <a href="{{route('refund')}}">Refund Policy</a>
                             </div>
                         </div>
                     </div>
