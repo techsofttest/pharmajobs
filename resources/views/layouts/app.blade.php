@@ -159,22 +159,20 @@
   <script>
 
 var win = $(window);
-var isSticky = false;
 
 win.on('scroll', function () {
 
-    var scroll = win.scrollTop();
-
-    if (scroll > 220 && !isSticky) {
-        $(".fixedRit").addClass("fixedRit-sticky");
-        $(".sti-menu").addClass("sti-menu-sticky");
-        isSticky = true;
+    // Only run if page can actually scroll
+    if ($(document).height() <= win.height()) {
+        return;
     }
 
-    if (scroll < 180 && isSticky) {
+    if (win.scrollTop() > 200) {
+        $(".fixedRit").addClass("fixedRit-sticky");
+        $(".sti-menu").addClass("sti-menu-sticky");
+    } else {
         $(".fixedRit").removeClass("fixedRit-sticky");
         $(".sti-menu").removeClass("sti-menu-sticky");
-        isSticky = false;
     }
 
 });
