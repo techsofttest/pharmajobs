@@ -23,7 +23,7 @@ class HomeController extends Controller
 
     $data['states'] = State::orderBy('name')->get();
 
-    $data['categories'] = Category::orderBy('name','asc')->get();
+    $data['categories'] = Category::orderBy('order','asc')->get();
 
     $data['packages'] = Package::with('category.designations')->get();
 

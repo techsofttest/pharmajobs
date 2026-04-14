@@ -96,7 +96,7 @@
                                 </div>
                                 <div>
                                     <h6 class="mb-1">Office Address</h6>
-                                    <p class="text-muted small mb-0">123 Pharma District, Mumbai, India 400001</p>
+                                    <p class="text-muted small mb-0">XXII/41, Akhurath <br>Poonthoppu Ward, Avalukunnu Post<br> Alappuzha, Kerala, India - 688006 </p>
                                 </div>
                             </div>
 
@@ -113,10 +113,10 @@
                             <div class="d-flex align-items-start mb-0">
                                 <div class="icon-box me-3 mt-1 text-center rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(247, 138, 35, 0.1); color: var(--theme-color);">
                                     <i class="fa-solid fa-envelope"></i>
-                                </div>
+                                </div> 
                                 <div>
                                     <h6 class="mb-1">Email Address</h6>
-                                    <p class="text-muted small mb-0"><a href="mailto:info@thepharmajobs.com" class="text-muted text-decoration-none hover-orange">info@thepharmajobs.com</a></p>
+                                    <p class="text-muted small mb-0"><a href="mailto:info@pharmahealthcarejobs.com" class="text-muted text-decoration-none hover-orange">info@pharmahealthcarejobs.com</a></p>
                                 </div>
                             </div>
                         </div>

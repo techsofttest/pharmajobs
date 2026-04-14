@@ -23,8 +23,19 @@
 
 <div class="sposorships-body">
 
+    @php
+        $validityDays = 0;
+        $unit = strtolower(trim($package->duration_unit));
+        if (in_array($unit, ['day', 'days'])) {
+            $validityDays = $package->duration_value;
+        } elseif (in_array($unit, ['month', 'months'])) {
+            $validityDays = $package->duration_value * 30;
+        } elseif (in_array($unit, ['year', 'years'])) {
+            $validityDays = $package->duration_value * 365;
+        }
+    @endphp
     <h6>
-        Subscription Valid for {{ $package->validity_days }} Days
+        Subscription Valid for {{ $validityDays }} Days ({{ $package->duration_value }} {{ ucfirst($package->duration_unit) }})
     </h6>
 
     <span class="dd-err">Designations</span>

@@ -16,7 +16,11 @@ class Category extends Model
 
     static::creating(function($model){
         if (empty($model->slug)) {
-        $model->slug = static::generateUniqueSlug($model->name);
+            $model->slug = static::generateUniqueSlug($model->name);
+        }
+
+        if (is_null($model->order)) {
+            $model->order = static::max('order') + 1;
         }
     });
 

@@ -15,6 +15,8 @@ class CategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->reorderable('order')
+            ->defaultSort('order')
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
