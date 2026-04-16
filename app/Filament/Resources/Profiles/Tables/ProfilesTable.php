@@ -8,7 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
-class ProfilesTable
+class ProfilesTable 
 {
     public static function configure(Table $table): Table
     {
@@ -17,7 +17,7 @@ class ProfilesTable
                 \Filament\Tables\Columns\TextColumn::make('first_name')
                     ->label('First Name')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable(), 
                 \Filament\Tables\Columns\TextColumn::make('last_name')
                     ->label('Last Name')
                     ->searchable()
@@ -43,15 +43,15 @@ class ProfilesTable
                     ->sortable(),
             ])
             ->filters([
-                //
+                
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                //ViewAction::make(),
+                //EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    //DeleteBulkAction::make(),
                 ]),
             ]);
     }

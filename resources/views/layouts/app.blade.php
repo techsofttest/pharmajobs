@@ -40,8 +40,8 @@
 
         <body id="show-grid">
         <!-- Cursor UI -->
-        <div class="cursor"></div>
-        <div class="cursor2"></div>
+        <!--<div class="cursor"></div>
+        <div class="cursor2"></div>-->
 
 
         @include('partials.navbar')
