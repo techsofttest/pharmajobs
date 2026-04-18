@@ -25,7 +25,7 @@
                 </div>-->
 
 
-<div class="col-lg-3 d-none d-lg-block" >
+<div class="col-lg-3 d-lg-block" >
 <aside class="dashboard-sidebar">
 
 @php
