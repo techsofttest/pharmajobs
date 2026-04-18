@@ -327,10 +327,10 @@ padding: 14px 28px;
 
 img.bann-img {
     width: 100%;
-    height: 100% !important;
+    height: 200px !important;
     object-fit: cover;
     object-position: top left;
-    min-height:650px
+    
 }
 .counter-card .box-number {
    
@@ -560,11 +560,23 @@ padding: 14px 28px;
 
 img.bann-img {
     width: 100%;
-    height: 100% !important;
+    height: 200px !important;
     object-fit: cover;
-    object-position: top left;
-    min-height:650px
+    object-position: middle center;
 }
+
+.hero-4
+{
+
+    height:200px;
+
+}
+
+.hero-style-4 .btn-group
+{
+    display:none;
+}
+
 .counter-card .box-number {
    
     font-size: 27px;

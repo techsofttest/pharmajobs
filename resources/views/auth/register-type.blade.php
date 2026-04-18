@@ -283,7 +283,7 @@
                 <p>Choose how you want to get started</p>
             </div>
 
-            <div class="row g-4 mx-5 mb-5">
+            <div class="row g-4 mx-lg-5 mb-lg-5">
 
                 <!-- Employee Card -->
 

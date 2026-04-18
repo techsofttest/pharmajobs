@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="{{ asset('css/magnific-popup.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.min.css?v1.5') }}" />
-        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/responsive.css?v1.6') }}" />
 
         <!-- jQuery UI CDN -->
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -143,16 +143,19 @@
 
 
    .fnav {
-  opacity: 0;
-  transform: translate(-50%, 20px);
-  transition: all 0.25s ease;
-  pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    transition: all 0.25s ease;
+    pointer-events: none;
     }
 
+    @media(max-width:525px)
+    {
     .fnav.show {
     opacity: 1;
     transform: translate(-50%, 0);
     pointer-events: auto;
+    }
     }
 
 
@@ -247,7 +250,7 @@
 
 
        <!-- Floating Navbar -->
-    <nav class="fnav" role="navigation" aria-label="Main navigation">
+    <nav class="fnav show" role="navigation" aria-label="Main navigation">
 
       <a class="fnav-item home" href="{{route('home')}}">
         <span class="icon">
@@ -314,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const pageHeight = document.documentElement.scrollHeight;
 
         // 1. Show after 1 viewport height
-        const shouldShow = scrollY > viewportHeight-100;
+        const shouldShow = true;
 
         // 2. Hide near bottom (adjust 100px buffer if needed)
         const nearBottom = (scrollY + viewportHeight) >= (pageHeight - 100);

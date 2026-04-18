@@ -102,7 +102,7 @@
                 <div class="container">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-lg-auto">
-                            <p class="copyright-text">
+                            <p class="copyright-text my-3 my-lg-0">
                                 Copyright <i class="fal fa-copyright"></i> 2026
                                 <a href="{{route('home')}}">Pharma Healthcare Jobs</a>. All Rights Reserved. Web Designed By <a href="https://www.techsoftweb.com/" target="_blank"> Techsoft</a>
                             </p>
