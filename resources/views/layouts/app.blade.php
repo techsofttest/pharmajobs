@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const pageHeight = document.documentElement.scrollHeight;
 
         // 1. Show after 1 viewport height
-        const shouldShow = scrollY > viewportHeight;
+        const shouldShow = scrollY > viewportHeight-100;
 
         // 2. Hide near bottom (adjust 100px buffer if needed)
         const nearBottom = (scrollY + viewportHeight) >= (pageHeight - 100);
