@@ -916,6 +916,19 @@ input[type=date]::-webkit-calendar-picker-indicator {
     z-index: 1
 }
 
+
+.th-menu-wrapper.th-body-visible {
+    opacity: 1;
+    visibility: visible
+}
+
+.th-menu-wrapper.th-body-visible .th-menu-area {
+    left: 0;
+    opacity: 1;
+    visibility: visible
+}
+
+
 .th-mobile-menu {
       overflow-y: scroll;
     max-height: calc(100vh - 100px);
@@ -960,6 +973,16 @@ input[type=date]::-webkit-calendar-picker-indicator {
     display: inline-block
 }
 
+.th-mobile-menu ul li.th-active>a {
+    color: var(--theme-color)
+}
+
+.th-mobile-menu ul li.th-active>a:before {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
 .th-mobile-menu ul li ul li {
     padding-left:20px
 }
@@ -969,6 +992,52 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .th-mobile-menu ul li ul li:last-child {
     border-bottom: none
+}
+
+.th-mobile-menu ul .th-item-has-children>a .th-mean-expand {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    font-weight: 400;
+    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    margin-top: -12.5px;
+    display: inline-block;
+    text-align: center;
+    background-color: var(--smoke-color);
+    color: var(--title-color);
+    box-shadow: 0 0 20px -8px rgba(173, 136, 88, 0.5);
+    border-radius: 50%
+}
+
+.th-mobile-menu ul .th-item-has-children>a .th-mean-expand:before {
+    content: '\f067';
+    font-family: var(--icon-font)
+}
+
+.th-mobile-menu ul .th-item-has-children>a:after {
+    content: "\f067";
+    font-family: var(--icon-font);
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 50px;
+    background-color: var(--smoke-color);
+    float: right;
+    margin-top: 1px
+}
+
+.th-mobile-menu ul .th-item-has-children.th-active>a .th-mean-expand:before {
+    content: '\f068'
+}
+
+.th-mobile-menu ul .th-item-has-children.th-active>a:after {
+    content: "\f068"
 }
 
 .th-mobile-menu>ul {
@@ -4210,7 +4279,7 @@ opacity: 0;
     visibility: hidden;
 	opacity: 1;
     visibility: visible;
-	 bottom: 57px
+	 bottom: 85px;
 }
 .fixedRit-sticky{
 	opacity: 1;
@@ -5233,13 +5302,13 @@ img.bann-img {
 .chat-bg {
 	
 	    position: fixed;
-    bottom: 51px;
+    bottom: 100px;
     z-index: 10;
     right: 11px;
 }
 
 .chat-bg img{
-	width:55px
+	width:40px
 }
 
 /**********/
