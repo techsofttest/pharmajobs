@@ -25,7 +25,17 @@ class HomeController extends Controller
 
     $data['categories'] = Category::orderBy('order','asc')->get();
 
-    $data['packages'] = Package::with('category.designations')->get();
+    $user = auth()->user() ?? auth()->guard('employee')->user() ?? auth()->guard('employer')->user();
+    $categoryId = null;
+    if (auth()->guard('employee')->check() && $user->employee) {
+        $categoryId = $user->employee->category_id;
+    }
+
+    $packageQuery = Package::where('is_active', true);
+    if ($categoryId) {
+        $packageQuery->where('category_id', $categoryId);
+    }
+    $data['packages'] = $packageQuery->with('category.designations')->get();
 
     $data['jobs'] = Job::active()->with(['company','locations'])->latest()->get();
 

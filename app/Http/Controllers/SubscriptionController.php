@@ -48,7 +48,29 @@ class SubscriptionController extends Controller
         return view('packages.index', compact('packages'));
     }
 
-    public function checkout(Package $package)
+    public function showCheckout(Package $package)
+    {
+        $user = auth()->user() ?? auth()->guard('employee')->user() ?? auth()->guard('employer')->user();
+        
+        if (!$user) {
+            session(['intended_url' => route('checkout.show', $package)]);
+            return redirect()->route('login');
+        }
+
+        // Verify category linkage (Designation locking)
+        $categoryId = null;
+        if (auth()->guard('employee')->check()) {
+            $categoryId = $user->employee->category_id ?? null;
+        }
+
+        if ($categoryId && $package->category_id != $categoryId) {
+            return redirect()->route('packages')->with('error', 'This package is not applicable for your designation.');
+        }
+
+        return view('packages.checkout', compact('package', 'user'));
+    }
+
+    public function initiateCheckout(Package $package)
     {
         $user = auth()->user() ?? auth()->guard('employee')->user() ?? auth()->guard('employer')->user();
         

@@ -4,10 +4,6 @@
 <title>Our Packages - Pharma Healthcare Jobs</title>
 @endsection
 
-@section('head_extras')
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-@endsection
-
 @section('content')
 
     <!-- Breadcrumb -->
@@ -60,96 +56,4 @@
         }
     </style>
 
-@endsection
-
-@section('footer_extras')
-<script>
-$(document).ready(function() {
-    $('.subscribe-btn').click(function() {
-        const packageId = $(this).data('id');
-        const packageName = $(this).data('name');
-        const btn = $(this);
-        const originalText = btn.html();
-
-        // Show loading
-        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> Processing...');
-
-        $.ajax({
-            url: "/checkout/" + packageId,
-            method: "POST",
-            data: {
-                _token: "{{ csrf_token() }}"
-            },
-            success: function(response) {
-                if (response.success) {
-                    var options = {
-                        "key": response.key,
-                        "amount": response.amount,
-                        "currency": "INR",
-                        "name": response.name,
-                        "description": response.description,
-                        "order_id": response.order_id,
-                        "handler": function (paymentResponse){
-                            verifyPayment(paymentResponse);
-                        },
-                        "prefill": {
-                            "name": response.user.name,
-                            "email": response.user.email,
-                            "contact": response.user.contact
-                        },
-                        "theme": {
-                            "color": "#006aff"
-                        },
-                        "modal": {
-                            "ondismiss": function(){
-                                btn.prop('disabled', false).html(originalText);
-                            }
-                        }
-                    };
-                    var rzp = new Razorpay(options);
-                    rzp.open();
-                } else {
-                    alertify.error(response.message || 'Something went wrong');
-                    btn.prop('disabled', false).html(originalText);
-                }
-            },
-            error: function(xhr) {
-                btn.prop('disabled', false).html(originalText);
-                if (xhr.status === 401) {
-                    alertify.error('Session expired. Please login again.');
-                    window.location.href = "{{ route('login') }}";
-                } else {
-                    alertify.error('Error initiating payment. Please try again.');
-                }
-            }
-        });
-    });
-
-    function verifyPayment(paymentResponse) {
-        $.ajax({
-            url: "{{ route('payment.callback') }}",
-            method: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                razorpay_payment_id: paymentResponse.razorpay_payment_id,
-                razorpay_order_id: paymentResponse.razorpay_order_id,
-                razorpay_signature: paymentResponse.razorpay_signature
-            },
-            success: function(response) {
-                if (response.success) {
-                    alertify.success(response.message);
-                    setTimeout(() => {
-                        window.location.href = "{{ route('home') }}"; // Or dashboard
-                    }, 2000);
-                } else {
-                    alertify.error(response.message);
-                }
-            },
-            error: function() {
-                alertify.error('Payment verification failed.');
-            }
-        });
-    }
-});
-</script>
 @endsection
