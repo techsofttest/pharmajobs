@@ -46,7 +46,7 @@
                                 <li><a href="{{route('employee.dashboard')}}">Dashboard</a></li> 
                                 <li><a href="{{route('employee.profile.edit')}}">Edit Profile</a></li> 
                                 <li><a href="{{route('employee.password')}}">Change Password</a></li> 
-                                <li><a href="#">Our Packages</a></li>
+                                <li><a href="{{route('subscribe')}}">Our Packages</a></li>
 
                             </ul>
 
@@ -69,8 +69,9 @@
 
 
                         <li><a href="{{url('faq')}}">FAQS</a></li>
-
+                        <li><a href="{{route('subscribe')}}">Subscribe Now</a></li>
                         <li><a href="{{url('contact')}}">Contact Us</a></li>
+
 
 
                     </ul>
@@ -134,8 +135,9 @@
                                         @endif
 
                                         <li><a href="{{url('faq')}}">FAQS</a></li>
-
+                                        <li><a href="{{route('subscribe')}}">Subscribe</a></li>
                                         <li><a href="{{url('contact')}}">Contact Us</a></li>
+
 
                                     </ul>
                                 </nav>

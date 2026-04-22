@@ -17,14 +17,17 @@ use Filament\Tables\Table;
 
 class SubscriptionResource extends Resource
 {
-
-    protected static bool $shouldRegisterNavigation = false;
-
     protected static string | UnitEnum | null $navigationGroup = 'User Management';
 
     protected static ?string $model = Subscription::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCreditCard;
+
+    protected static ?string $navigationLabel = 'Subscriptions';
+
+    protected static ?string $modelLabel = 'Subscription';
+
+    protected static ?string $pluralModelLabel = 'Subscriptions';
 
     public static function form(Schema $schema): Schema
     {
@@ -34,6 +37,18 @@ class SubscriptionResource extends Resource
     public static function table(Table $table): Table
     {
         return SubscriptionsTable::configure($table);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'active')
+            ->where('ends_at', '>', now())
+            ->count() ?: null;
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'success';
     }
 
     public static function getRelations(): array

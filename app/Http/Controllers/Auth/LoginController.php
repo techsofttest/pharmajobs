@@ -48,9 +48,13 @@ class LoginController extends Controller
             }
 
             // Determine redirect route based on role
-            $redirect = ($user->role === 'employer') 
-                ? route('employer.dashboard') 
-                : route('employee.dashboard');
+            $redirect = session()->pull('intended_url');
+            
+            if (!$redirect) {
+                $redirect = ($user->role === 'employer') 
+                    ? route('employer.dashboard') 
+                    : route('employee.dashboard');
+            }
 
             return response()->json([
                 'success' => true,

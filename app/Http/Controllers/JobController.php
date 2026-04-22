@@ -14,7 +14,6 @@ class JobController extends Controller
 {
     
 
-
     public function index()
     {
     
@@ -28,24 +27,45 @@ class JobController extends Controller
     public function detail($slug)
     {
 
-        $job = Job::with(['company','designation'])
+        $job = Job::with(['company','designation','locations'])
                 ->where('id',$slug)
                 ->where('is_active',1)
                 ->firstOrFail();
 
-        $locationAllowed = true;
+        // ── Access-control flags (defaults for guests / employers) ──
+        $locationAllowed    = false;
+        $designationAllowed = false;
+        $hasSubscription    = false;
+        $isEmployee         = auth('employee')->check();
+        $isEmployer         = auth('employer')->check();
 
-        if(auth('employee')->check()){
+        if ($isEmployee) {
 
-        $employee = auth('employee')->user();
+            $employee = auth('employee')->user();
+            $profile  = $employee;
+            $empProfile = $employee->employee; // ProfileEmployee
 
-        $locationAllowed = $job->locations()
-                                ->whereIn('location_id', [
-                                    $employee->location_1,
-                                    $employee->location_2
-                                ])
-                                ->exists();
+            // 1) Location check — job must be in one of the employee's 2 locations
+            $employeeLocationIds = $empProfile->locations->pluck('id')->toArray();
+            $jobLocationIds      = $job->locations->pluck('id')->toArray();
+            $locationAllowed     = count(array_intersect($employeeLocationIds, $jobLocationIds)) > 0;
+
+            // 2) Designation check — job must match the employee's registered designation
+            $designationAllowed = ($empProfile->designation_id == $job->designation_id);
+
+            // 3) Subscription check — employee must have an active subscription
+            $hasSubscription = $profile->activeSubscription !== null;
         }
+
+        // Employers can always see full details
+        if ($isEmployer) {
+            $locationAllowed    = true;
+            $designationAllowed = true;
+            $hasSubscription    = true;
+        }
+
+        // The job detail is fully unlocked only when all 3 conditions are met
+        $canViewFullDetails = $locationAllowed && $designationAllowed && $hasSubscription;
 
         $related = Job::where('designation_id',$job->designation_id)
                         ->where('id','!=',$job->id)
@@ -54,7 +74,16 @@ class JobController extends Controller
                         ->limit(6)
                         ->get();
 
-        return view('job-detail',compact('job','related'));
+        return view('job-detail', compact(
+            'job',
+            'related',
+            'locationAllowed',
+            'designationAllowed',
+            'hasSubscription',
+            'canViewFullDetails',
+            'isEmployee',
+            'isEmployer'
+        ));
 
     }
 

@@ -1004,137 +1004,112 @@
 
         <div class="section-heading">About the Role</div>
 
+        {{-- ═══════════ ACCESS CONTROL LOGIC ═══════════
+             Priority order:
+             1. Guest (not logged in)         → Login gate
+             2. Employee, location mismatch   → Location restricted gate
+             3. Employee, designation mismatch → Designation restricted gate
+             4. Employee, no subscription     → Subscribe gate
+             5. Employee, all checks pass     → Full details
+             6. Employer                      → Full details (always)
+        ═══════════════════════════════════════════════ --}}
 
-        @php
-          $employeeLocations = auth('employee')->check()
-              ? auth('employee')->user()->employee->locations->pluck('id')->toArray()
-              : [];
+        @if($canViewFullDetails)
 
-          $jobLocations = $job->locations->pluck('id')->toArray();
+          {{-- ✅ Full details — employee with matching location + designation + active subscription, OR employer --}}
+          {!! $job->description !!}
 
-          $locationAllowed = count(array_intersect($employeeLocations, $jobLocations)) > 0;
-      @endphp
+        @elseif(!$isEmployee && !$isEmployer)
 
-
-        @if(auth('employee')->check() && $locationAllowed)
-
-        {!! $job->description !!}
-
-        @elseif(auth('employee')->check() && !($locationAllowed))
-
-
-         <div class="wrapper">
-
-      <!-- ① LOCK GATE -->
-      <div class="gate">
-        <div class="gate-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </div>
-
-        <div class="gate-text">
-          <p class="gate-eyebrow">Location unavilable</p>
-          <h2 class="gate-title">This location is restricted for your profile</h2>
-          <p class="gate-sub">You can only view jobs in your selected locations</p>
-        </div>
-
-        <div class="gate-actions">
-
-         
-        </div>
-      </div>
-
-
-      <!-- ② BLURRED PREVIEW -->
-      <div class="preview-card">
-        <div class="preview-inner">
-
-          <h3 class="preview-title">Lorem Ipsum Dolor</h3>
-          <p class="preview-company">Lorem Ipsum · Banglore, Karnataka</p>
-
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod faucibus commodo. Fusce pellentesque nulla arcu, in sodales nulla varius eget. Sed ut facilisis enim. Phasellus lacus dui, egestas vel massa in, molestie egestas nibh. Sed facilisis euismod elit, id sagittis dolor porta in. Maecenas nisi lorem, finibus sed euismod nec, auctor sit amet nisi. Curabitur dignissim semper blandit.</p>
-
-          <div class="preview-divider"></div>
-
-          <div class="bar" style="width:92%"></div>
-          <div class="bar" style="width:78%"></div>
-          <div class="bar" style="width:85%"></div>
-          <div class="bar" style="width:60%"></div>
-
-          <div class="preview-actions-row" style="margin-top:20px">
-            <div class="fake-btn" style="width:150px"></div>
-            <div class="fake-btn" style="width:100px; background:#f5f1eb;"></div>
+          {{-- 🔒 GUEST — not logged in --}}
+          <div class="wrapper">
+            <div class="gate">
+              <div class="gate-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="gate-text">
+                <p class="gate-eyebrow">Members only</p>
+                <h2 class="gate-title">Unlock full details &amp; apply</h2>
+                <p class="gate-sub">Log in and subscribe to view requirements &amp; apply.</p>
+              </div>
+              <div class="gate-actions">
+                <a href="{{ route('login') }}" class="book-n-btn">
+                  <i class="fa fa-user" aria-hidden="true"></i> Login
+                </a>
+              </div>
+            </div>
+            @include('partials.blurred-preview')
           </div>
 
-        </div>
+        @elseif($isEmployee && !$locationAllowed)
 
-      
-       </div>
-
-       </div>
-
-
-      @elseif(auth('employee')->guest() && auth('employer')->guest())
-
-
-      <div class="wrapper">
-
-      <!-- ① LOCK GATE -->
-      <div class="gate">
-        <div class="gate-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </div>
-
-        <div class="gate-text">
-          <p class="gate-eyebrow">Members only</p>
-          <h2 class="gate-title">Unlock full details &amp; apply</h2>
-          <p class="gate-sub">Log in and subscribe to view requirements &amp; apply.</p>
-        </div>
-
-        <div class="gate-actions">
-
-
-          <a href="{{route('login')}}" class="book-n-btn">
-          <i class="fa fa-user" aria-hidden="true"></i> Login 
-          </a>
-         
-        </div>
-      </div>
-    
-      <!-- ② BLURRED PREVIEW -->
-      <div class="preview-card">
-        <div class="preview-inner">
-
-          <h3 class="preview-title">Lorem Ipsum Dolor</h3>
-          <p class="preview-company">Lorem Ipsum · Banglore, Karnataka</p>
-
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod faucibus commodo. Fusce pellentesque nulla arcu, in sodales nulla varius eget. Sed ut facilisis enim. Phasellus lacus dui, egestas vel massa in, molestie egestas nibh. Sed facilisis euismod elit, id sagittis dolor porta in. Maecenas nisi lorem, finibus sed euismod nec, auctor sit amet nisi. Curabitur dignissim semper blandit.</p>
-
-          <div class="preview-divider"></div>
-
-          <div class="bar" style="width:92%"></div>
-          <div class="bar" style="width:78%"></div>
-          <div class="bar" style="width:85%"></div>
-          <div class="bar" style="width:60%"></div>
-
-          <div class="preview-actions-row" style="margin-top:20px">
-            <div class="fake-btn" style="width:150px"></div>
-            <div class="fake-btn" style="width:100px; background:#f5f1eb;"></div>
+          {{-- 🔒 LOCATION RESTRICTED --}}
+          <div class="wrapper">
+            <div class="gate">
+              <div class="gate-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="gate-text">
+                <p class="gate-eyebrow">Location unavailable</p>
+                <h2 class="gate-title">This job is outside your selected locations</h2>
+                <p class="gate-sub">You can only view full details for jobs in your registered locations.</p>
+              </div>
+              <div class="gate-actions"></div>
+            </div>
+            @include('partials.blurred-preview')
           </div>
 
-        </div>
+        @elseif($isEmployee && !$designationAllowed)
 
-      
-       </div>
+          {{-- 🔒 DESIGNATION RESTRICTED --}}
+          <div class="wrapper">
+            <div class="gate">
+              <div class="gate-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="gate-text">
+                <p class="gate-eyebrow">Designation mismatch</p>
+                <h2 class="gate-title">This job is for a different designation</h2>
+                <p class="gate-sub">You can only view full details for jobs matching your registered designation.</p>
+              </div>
+              <div class="gate-actions"></div>
+            </div>
+            @include('partials.blurred-preview')
+          </div>
 
-       </div>
+        @elseif($isEmployee && !$hasSubscription)
+
+          {{-- 🔒 SUBSCRIPTION REQUIRED --}}
+          <div class="wrapper">
+            <div class="gate">
+              <div class="gate-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="gate-text">
+                <p class="gate-eyebrow">Subscription required</p>
+                <h2 class="gate-title">Subscribe to unlock full job details</h2>
+                <p class="gate-sub">Choose a plan to view complete requirements, contact details &amp; apply.</p>
+              </div>
+              <div class="gate-actions">
+                <a href="{{ route('packages') }}" class="book-n-btn">
+                  <i class="fa fa-crown" aria-hidden="true"></i> View Plans
+                </a>
+              </div>
+            </div>
+            @include('partials.blurred-preview')
+          </div>
 
         @endif
 
@@ -1144,155 +1119,106 @@
 
 
 
-         @if(auth('employee')->check())
+         @if($isEmployee && $canViewFullDetails)
 
         <!-- Apply bar -->
         <div class="apply-bar">
           <div class="d-flex gap-2 w-100">
 
-
             @php
             $applied = $job->applications()
-                    ->where('profile_id',auth('employee')->id())
+                    ->where('profile_id', auth('employee')->id())
                     ->exists();
+            $creator = $job->createdBy;
+            $employee = auth('employee')->user();
             @endphp
 
           @if($applied)
 
-
-          @php
-          $creator = $job->createdBy;
-          @endphp
-
-
-          @if($creator && $creator->designation == 'hr')
-
-          <div class="btn-applied">
-          <div class="check-ring">
-          <i class="fa-solid fa-check"></i>
-          </div>
-            Applied
-          </div>
-
-          @else
-              
-
-          @if(auth('employee')->check() && $locationAllowed)
-
-           <div class="contact-wrapper">
-                <div class="row g-3 align-items-stretch">
-            
-                  <!-- Name -->
-                  <div class="col-12 col-md-4">
-                    <div class="contact-card h-100">
-                      <div class="contact-icon-wrap">
-                        <i class="fa-solid fa-user"></i>
-                      </div>
-                      <div class="contact-label">Contact Name</div>
-                      <div class="contact-value">{{$job->contact_name}}</div>
-                    </div>
-                  </div>
-            
-                  <!-- Phone -->
-                  <div class="col-12 col-md-4">
-                    <div class="contact-card h-100">
-                      <div class="contact-icon-wrap">
-                        <i class="fa-solid fa-phone"></i>
-                      </div>
-                      <div class="contact-label">Phone Number</div>
-                      <div class="contact-value">{{$job->contact_phone}}</div>
-                    </div>
-                  </div>
-            
-                  <!-- Email -->
-                  <div class="col-12 col-md-4">
-                    <div class="contact-card h-100">
-                      <div class="contact-icon-wrap">
-                        <i class="fa-solid fa-envelope"></i>
-                      </div>
-                      <div class="contact-label">Email Address</div>
-                      <div class="contact-value">{{$job->contact_email}}</div>
-                    </div>
-                  </div>
-            
-                </div>
-              </div>
-
-              @endif
-
-          @endif
-
-
-
-          @else
-
-
-
-
-          @auth('employee')
-
-          @if(auth('employee')->check() && $locationAllowed)
-
-          @php
-          $employee = auth('employee')->user();
-          @endphp
-            
-          @if(!$employee->employee->cv)
-
-          <button class="btn-apply" style="background:red;">
-
-              <i class="fa-regular fa-lock me-2"></i>
-               Upload Resume to Apply
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-            @else
-
-            
-            @php
-            $creator = $job->createdBy;
-            @endphp
-
             @if($creator && $creator->designation == 'hr')
 
-            <form action="{{ route('employee.job.apply',$job->id) }}" method="POST">
-            @csrf
-
-            <button class="btn-apply">
-              <i class="fa-regular fa-paper-plane"></i>
-              Apply Now
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-
-          </form>
+            <div class="btn-applied">
+              <div class="check-ring">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              Applied
+            </div>
 
             @else
 
-            <form action="{{ route('employee.job.apply',$job->id) }}" method="POST">
-            @csrf
+            <div class="contact-wrapper">
+              <div class="row g-3 align-items-stretch">
+                <!-- Name -->
+                <div class="col-12 col-md-4">
+                  <div class="contact-card h-100">
+                    <div class="contact-icon-wrap">
+                      <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="contact-label">Contact Name</div>
+                    <div class="contact-value">{{ $job->contact_name }}</div>
+                  </div>
+                </div>
+                <!-- Phone -->
+                <div class="col-12 col-md-4">
+                  <div class="contact-card h-100">
+                    <div class="contact-icon-wrap">
+                      <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="contact-label">Phone Number</div>
+                    <div class="contact-value">{{ $job->contact_phone }}</div>
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="col-12 col-md-4">
+                  <div class="contact-card h-100">
+                    <div class="contact-icon-wrap">
+                      <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="contact-label">Email Address</div>
+                    <div class="contact-value">{{ $job->contact_email }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <button class="btn-apply">
-              <i class="fa-regular fa-eye"></i>
-              Show Contact Details
+            @endif
+
+          @else
+
+            @if(!$employee->employee->cv)
+
+            <button class="btn-apply" style="background:red;">
+              <i class="fa-regular fa-lock me-2"></i>
+              Upload Resume to Apply
               <i class="fa-solid fa-arrow-right"></i>
             </button>
 
+            @elseif($creator && $creator->designation == 'hr')
+
+            <form action="{{ route('employee.job.apply', $job->id) }}" method="POST">
+              @csrf
+              <button class="btn-apply">
+                <i class="fa-regular fa-paper-plane"></i>
+                Apply Now
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </form>
+
+            @else
+
+            <form action="{{ route('employee.job.apply', $job->id) }}" method="POST">
+              @csrf
+              <button class="btn-apply">
+                <i class="fa-regular fa-eye"></i>
+                Show Contact Details
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
             </form>
 
             @endif
 
+          @endif
 
-
-
-            @endif
-
-
-            @endif
-
-            @endauth
-
-            @endif
-
-            
           </div>
         </div>
 

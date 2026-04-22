@@ -37,5 +37,15 @@ class Profile extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Category::class);
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 
+    public function activeSubscription()
+    {
+        return $this->hasOne(Subscription::class)
+            ->where('status', 'active')
+            ->where('ends_at', '>', now());
+    }
 }
