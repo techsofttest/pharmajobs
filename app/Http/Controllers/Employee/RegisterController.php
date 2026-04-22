@@ -85,7 +85,7 @@ public function locations(Request $request, $designationId)
             'speciality' => 'nullable|string|max:255',
             'cv' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'locations' => 'nullable|array|max:2',
-            'locations.*' => 'exists:districts,id',
+            'locations.*' => 'exists:locations,id',
         ]);
 
         $profile = DB::transaction(function () use ($request) {
