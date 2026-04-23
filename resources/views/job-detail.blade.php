@@ -857,14 +857,20 @@
         <!-- Header -->
         <div class="job-header">
           <div class="d-flex align-items-start gap-3">
-            <div class="company-logo">
-              
-            <img src="{{ $job->company->logo 
-                        ? asset('storage/'.$job->company->logo) 
-                        : asset('assets/img/job/default.jpg') }}" 
-                     alt="{{ $job->company->name }}" 
-                     width="100%">
+            @php
+              $companyName = $job->company->name ?? 'Company';
+              $firstLetter = strtoupper(substr($companyName, 0, 1));
+              $colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8E24AA', '#F06292', '#0097A7', '#5C6BC0'];
+              $colorIndex = ord($firstLetter) % count($colors);
+              $avatarColor = $colors[$colorIndex];
+            @endphp
 
+            <div class="company-logo" style="{{ !$job->company->logo ? 'background-color: '.$avatarColor.'; color: #fff; border: none;' : '' }}">
+              @if($job->company->logo)
+                <img src="{{ asset('storage/'.$job->company->logo) }}" alt="{{ $companyName }}" width="100%">
+              @else
+                <span style="font-size: 24px; font-weight: 800; font-family: var(--font-head);">{{ $firstLetter }}</span>
+              @endif
             </div>
             <div>
               <div class="job-title">{{ $job->designation->name }}</div>
@@ -1242,11 +1248,18 @@
         <a href="#" class="job-card featured">
           <div class="d-flex align-items-center gap-2 mb-2">
 
-                    <div class="card-logo"><img src="{{ $job->company->logo 
-                        ? asset('storage/'.$job->company->logo) 
-                        : asset('assets/img/job/default.jpg') }}" 
-                     alt="{{ $job->company->name }}" 
-                     width="100%">
+                    @php
+                      $relCompanyName = $job->company->name ?? 'Company';
+                      $relFirstLetter = strtoupper(substr($relCompanyName, 0, 1));
+                      $relColorIndex = ord($relFirstLetter) % count($colors);
+                      $relAvatarColor = $colors[$relColorIndex];
+                    @endphp
+                    <div class="card-logo" style="{{ !$job->company->logo ? 'background-color: '.$relAvatarColor.'; color: #fff; border: none;' : '' }}">
+                      @if($job->company->logo)
+                        <img src="{{ asset('storage/'.$job->company->logo) }}" alt="{{ $relCompanyName }}" width="100%">
+                      @else
+                        <span style="font-weight: 800;">{{ $relFirstLetter }}</span>
+                      @endif
                     </div>
 
             <div>

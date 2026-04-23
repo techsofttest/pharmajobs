@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="{{ asset('css/gallery-fonts.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/magnific-popup.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/style.min.css?v1.5') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.min.css?v1.8') }}" />
         <link rel="stylesheet" href="{{ asset('css/responsive.css?v1.6') }}" />
 
         <!-- jQuery UI CDN -->

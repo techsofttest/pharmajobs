@@ -4,12 +4,20 @@
     <div class="job-sec">
 
         <div class="d-flex cc-jjjo"> 
-            <div class="cc-jjjo-img"> 
-                <img src="{{ $job->company->logo 
-                        ? asset('storage/'.$job->company->logo) 
-                        : asset('assets/img/job/default.jpg') }}" 
-                     alt="{{ $job->company->name }}" 
-                     width="100%">
+            @php
+              $companyName = $job->company->name ?? 'Company';
+              $firstLetter = strtoupper(substr($companyName, 0, 1));
+              $colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8E24AA', '#F06292', '#0097A7', '#5C6BC0'];
+              $colorIndex = ord($firstLetter) % count($colors);
+              $avatarColor = $colors[$colorIndex];
+            @endphp
+
+            <div class="cc-jjjo-img" style="{{ !$job->company->logo ? 'background-color: '.$avatarColor.'; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; border: none;' : '' }}"> 
+                @if($job->company->logo)
+                    <img src="{{ asset('storage/'.$job->company->logo) }}" alt="{{ $companyName }}" width="100%">
+                @else
+                    <span style="font-size: 20px;">{{ $firstLetter }}</span>
+                @endif
             </div>
 
             <div class="cc-jjjo-content"> 
