@@ -36,11 +36,13 @@ Route::get('/privacy-policy',[PolicyController::class,'privacy'])->name('privacy
 Route::get('/disclaimer',[PolicyController::class,'disclaimer'])->name('disclaimer');
 
 Route::get('/return-and-refunds',[PolicyController::class,'refund'])->name('refund');
-Route::get('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
-Route::get('/packages', [App\Http\Controllers\SubscriptionController::class, 'packages'])->name('packages');
-Route::get('/checkout/{package}', [App\Http\Controllers\SubscriptionController::class, 'showCheckout'])->name('checkout.show');
-Route::post('/checkout/{package}', [App\Http\Controllers\SubscriptionController::class, 'initiateCheckout'])->name('checkout.initiate');
-Route::post('/payment/callback', [App\Http\Controllers\SubscriptionController::class, 'paymentCallback'])->name('payment.callback');
+Route::middleware('auth:employee,employer')->group(function () {
+    Route::get('/subscribe', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
+    Route::get('/packages', [App\Http\Controllers\SubscriptionController::class, 'packages'])->name('packages');
+    Route::get('/checkout/{package}', [App\Http\Controllers\SubscriptionController::class, 'showCheckout'])->name('checkout.show');
+    Route::post('/checkout/{package}', [App\Http\Controllers\SubscriptionController::class, 'initiateCheckout'])->name('checkout.initiate');
+    Route::post('/payment/callback', [App\Http\Controllers\SubscriptionController::class, 'paymentCallback'])->name('payment.callback');
+});
 
 
 

@@ -48,7 +48,7 @@ class LoginController extends Controller
             }
 
             // Determine redirect route based on role
-            $redirect = session()->pull('intended_url');
+            $redirect = session()->pull('intended_url') ?: session()->pull('url.intended');
             
             if (!$redirect) {
                 if ($user->role === 'employer') {
