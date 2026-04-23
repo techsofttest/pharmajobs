@@ -1135,7 +1135,7 @@
 
           @if($applied)
 
-            @if($creator && $creator->designation == 'hr')
+            @if($creator && ($creator->employer->designation ?? '') == 'hr')
 
             <div class="btn-applied">
               <div class="check-ring">
@@ -1193,7 +1193,7 @@
               <i class="fa-solid fa-arrow-right"></i>
             </button>
 
-            @elseif($creator && $creator->designation == 'hr')
+            @elseif($creator && ($creator->employer->designation ?? '') == 'hr')
 
             <form action="{{ route('employee.job.apply', $job->id) }}" method="POST">
               @csrf
@@ -1258,7 +1258,7 @@
           <div class="card-meta">
 
             <span class="card-pill"><i class="fa-solid fa-location-dot"></i> 
-            @if($job->districts->count() > 0)
+            @if($job->locations->count() > 0)
                     {{ $job->locations->pluck('name')->implode(', ') }}
             @endif
             </span>

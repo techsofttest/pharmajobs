@@ -14,6 +14,73 @@
     display: none !important;
 }
 
+
+  .role-card {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 160px;
+  }
+
+  .role-card .icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+  }
+
+  .role-card .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #212529;
+  }
+
+  .role-card .card-sub {
+    font-size: 11px;
+    color: #6c757d;
+    margin-bottom: 12px;
+  }
+
+  .role-card .btn-role {
+    font-size: 11px;
+    padding: 5px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .candidate .icon-wrap { background: #e7f0fd; }
+  .candidate .icon-wrap i { color: #1a5fbd; font-size: 18px; }
+  .candidate .btn-role { background: #1a5fbd; }
+  .candidate .btn-role:hover { background: #154ea0; }
+
+  .employer .icon-wrap { background: #e2f5ec; }
+  .employer .icon-wrap i { color: #157347; font-size: 18px; }
+  .employer .btn-role { background: #157347; }
+  .employer .btn-role:hover { background: #0f5c38; }
+
+  .register-card-mobile
+  {
+    display:none;
+  }
+
+  @media(max-width:525px)
+  {
+  .register-card-mobile
+  {
+    display:block;
+  }
+  }
+
+
 </style>
 
 		 <!-- Hero Section -->
@@ -69,11 +136,17 @@
 	
 <div class="btn-group justify-content-center mt-15  crr-btngroup">
 
+
+
 <a href="{{route('jobs')}}" class="th-btn  ">Browse Jobs <svg aria-hidden="true" class="e-font-icon-svg e-fas-chevron-circle-right" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg></a>
 
-<a href="{{route('about')}}" class="th-btn  style2">About  <svg aria-hidden="true" class="e-font-icon-svg e-fas-chevron-circle-right" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg></a> </div>
+<a href="{{route('about')}}" class="th-btn  style2">About  <svg aria-hidden="true" class="e-font-icon-svg e-fas-chevron-circle-right" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg></a> 
 
- 
+
+
+
+</div>
+
  
 </div> <!-- end hero-title-->
  </div> 
@@ -83,130 +156,61 @@
              	</div>
         </div>
 		
-		
-		<!-- Designations Data & Handler -->
-        <script>
-    // Data mapping from your image
-    const data = {
-        pharma: [
-           "(MR) Medical Representative",
-"(ASM) Area Sales Manager (First Line Manager)",
-"(KAM) Key Accounts Manager",
-"(BDM) Business Development Manager",
-"(PMD) Product Managers",
-"(MM) Marketing Managers",
-"(RM) Regional Manager (Second Line manager)",
-"(ZM) Zonal Sales Manager  (Third Line Manager)",
-"(SM) Sales Manager(Fourth Line Manager)",
-"(NSM) National Sales Manager",
-"DGM/GM/ VP"
-        ],
-        medical: [
-            "Physician",
-"Pediatrician",
-"Gynecologist/Obstetrician",
-"Anesthesiologist",
-"Cardiologist",
-" Dermatologist",
-"Endocrinologist",
-"Gastroenterologist",
-"Neurologist",
-"Oncologist",
-"Ophthalmologist",
-"Orthopedic Surgeon",
-"(ENT) Otolaryngologist",
-"Psychiatrist",
-"Pulmonologist",
-"Radiologist",
-"Urologist",
-"General surgeon",
-"Rheumatologist",
-"Nephrologist",
-"Neonatologist",
-"Dentist",
-"Cosmetologist",
-"Fertility Specialist",
-"Sexologist",
-"Andrologist",
-"Pathologist",
-"Immunologist",
-"Ayurvedic General Physician",
-"Homeopathic Physician",
-"Naturopathy Physician",
-"Siddha",
-"Unani",
-"Osteopathy",
-"Veterinarian (Doctors)",
-"General Physician"
-        ],
-        paramedical: [
- "Nurse",
-"Lab technician",
-"Pharmacist",
-"Radiographer (X Ray)",
-"MRI/CT/USG Technologist",
-"Diagnostic Medical Sonographer ",
-"Optometrist",
-"Physiotherapist",
-"Occupational Therapist",
-"Speech & Language Pathologist/Therapist",
-"Dietitian/Nutritionist",
-"Respiratory Therapist",
-"OT Technologist",
-"Anesthesia Technologist/Assistant",
-"Surgical Technologist/Assistant",
-"Dialysis Technologist",
-"Perfusionist (Operates heart-lung Machine)",
-"Cardiovascular Technologist",
-"Medical Records Technician",
-"Emergency Medical Technician ",
-"ECG Technician",
-"HR Managers",
-"Microbiologist",
-"Biotechnologist",
-"Biomedical Scientist",
-"Research Scientist",
-"Pharmaceutical /QC",
-"Food Technologist",
-"Forensic Specialist",
-"Biochemists",
-"Accountants",
-"Clerks",
-"Office Assistants"
-        ]
-    };
 
-    function updateDesignations() {
-        const categorySelect = document.getElementById("category");
-        const designationSelect = document.getElementById("designation");
-        const selectedCategory = categorySelect.value;
 
-        // Clear existing options
-        designationSelect.innerHTML = '<option value="" disabled>Select Designation</option>';
 
-        if (selectedCategory && data[selectedCategory]) {
-            data[selectedCategory].forEach(item => {
-                let option = document.createElement("option");
-                option.value = item;
-                option.textContent = item;
-                designationSelect.appendChild(option);
-            });
-        }
-    }
-        </script>
-		
-		 
+@if(!auth('employee')->check() && !auth('employer')->check())
+
+<div class="register-card-mobile d-lg-none d-flex gap-3 p-3 flex-wrap justify-content-center">
+
+  <div class="role-card text-center candidate">
+    <div class="icon-wrap">
+      <i class="fa-solid fa-user-tie"></i>
+    </div>
+    <p class="card-title">I am a Candidate</p>
+    <p class="card-sub">To search jobs</p>
+    <a href="{{route('employee.register')}}" class="btn-role">Click here</a>
+  </div>
+
+  <div class="role-card text-center employer">
+    <div class="icon-wrap">
+      <i class="fa-solid fa-building"></i>
+    </div>
+    <p class="card-title">I am an Employer</p>
+    <p class="card-sub">Post jobs for free</p>
+    <a href="{{route('employer.register')}}" class="btn-role">Click here</a>
+  </div>
+
+</div>
+
+@endif
+
+
+
+
+
+   
 		
 		<!-- About Section -->
         <div class="Aboo-sec">
 				
 				<div class="container">
+
+
+    <div class="row align-items-center ">
+
+
+
+    </div>
 				
 				
 				<div class="row align-items-center  justify-content-center">
  
                     <div class="col-lg-11  col-xl-10 wow fadeInUp" data-wow-delay=".3s">
-					        <div class="acc-aa text-center ">
+					
+                    
+                    
+                    <div class="acc-aa text-center ">
 						  
 							       <div class="title-area   mb-30">
                           

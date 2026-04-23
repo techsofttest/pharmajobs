@@ -101,16 +101,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
       </div>
       <div class="modal-body">
-       <form action="" method="POST" class="slider-contactform form-style3 cnt ">
+       <form id="forgotPassForm" method="POST" class="slider-contactform form-style3 cnt ">
+           @csrf
 <div class="row gx-20 mt-30">
 <div class="form-group col-md-12">
-<input type="email" name="email"  placeholder="Email  " required>  
+<input type="email" name="email"  placeholder="Enter your email" required>  
 </div>
  <div class="form-btn col-12">
 <div class="text-center mt-20">
-<button type="submit" class="th-btn  style2   ">Submit Now <svg aria-hidden="true" class="e-font-icon-svg e-fas-chevron-circle-right" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg> </button>
+<button type="submit" id="forgotPassBtn" class="th-btn  style2   ">Submit Now <svg aria-hidden="true" class="e-font-icon-svg e-fas-chevron-circle-right" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg> </button>
  <div class="row  mt-10 justify-content-center align-items-center facebb-google">
- <div class="col-lg-12"><div class="llllri">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#youmyModal" data-bs-dismiss="modal" aria-label="Close" > Sign In</a></div>
+ <div class="col-lg-12"><div class="llllri">Already have an account? <a href="{{ route('login') }}" data-bs-dismiss="modal" aria-label="Close" > Sign In</a></div>
 		    </div>
    </div>
  </div>
@@ -443,6 +444,46 @@ win.on('scroll', function () {
         @if (session('success'))
             alertify.success('{{ addslashes(session('success')) }}');
         @endif
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#forgotPassForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const btn = $('#forgotPassBtn');
+                const originalText = btn.html();
+                
+                btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> Sending...');
+                
+                $.ajax({
+                    url: "{{ route('password.email') }}",
+                    method: "POST",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            alertify.success(response.message);
+                            $('#forgotModal').modal('hide');
+                            $('#forgotPassForm')[0].reset();
+                        } else {
+                            alertify.error(response.message);
+                        }
+                        btn.prop('disabled', false).html(originalText);
+                    },
+                    error: function(xhr) {
+                        btn.prop('disabled', false).html(originalText);
+                        if (xhr.status === 422) {
+                            const errors = xhr.responseJSON.errors;
+                            Object.keys(errors).forEach(key => {
+                                alertify.error(errors[key][0]);
+                            });
+                        } else {
+                            alertify.error('Something went wrong. Please try again.');
+                        }
+                    }
+                });
+            });
+        });
     </script>
 
     @yield('footer_extras')

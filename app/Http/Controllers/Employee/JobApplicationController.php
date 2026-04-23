@@ -31,6 +31,23 @@ class JobApplicationController extends Controller
         'profile_id' => $employee->id
     ]);
 
+    // Send Notifications
+    $adminEmail = env('ADMIN_EMAIL', config('mail.from.address'));
+    $creator = $job->createdBy; // Profile model
+    $posterDesignation = $creator->employer->designation ?? null;
+
+    try {
+        // Always notify admin
+        \Illuminate\Support\Facades\Mail::to($adminEmail)->send(new \App\Mail\JobApplicationNotificationMail($job, $employee));
+
+        // If HR, also notify the HR poster
+        if ($posterDesignation === 'hr' && $creator->email) {
+            \Illuminate\Support\Facades\Mail::to($creator->email)->send(new \App\Mail\JobApplicationNotificationMail($job, $employee));
+        }
+    } catch (\Exception $e) {
+        \Illuminate\Support\Facades\Log::error('Job application mail error: ' . $e->getMessage());
+    }
+
     $message = 'Application submitted successfully';
     
     // Check if the job was posted by an employer and if their designation is HR

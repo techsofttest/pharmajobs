@@ -30,7 +30,7 @@ class JobController extends Controller
     {
         $employer = auth('employer')->user();
 
-        $job = Job::with(['designation','districts','applications'])
+        $job = Job::with(['designation','locations','applications'])
             ->where('created_by_type', $employer->getMorphClass())
             ->where('created_by_id', $employer->id)
             ->findOrFail($id);
@@ -75,12 +75,11 @@ class JobController extends Controller
         $request->validate([
 
             'designation_id' => 'required|exists:designations,id',
-            'title' => 'required|max:255',
             'description' => 'required',
             'qualification' => 'required',
 
             'districts' => 'required|array|max:12',
-            'districts.*' => 'exists:districts,id',
+            'districts.*' => 'exists:locations,id',
 
             'contact_name' => 'required',
             'contact_email' => 'required|email',
@@ -121,7 +120,15 @@ class JobController extends Controller
         $job->createdBy()->associate($employer);
         $job->save();
 
-        $job->districts()->sync($request->districts);
+        $job->locations()->sync($request->districts);
+
+        // Notify Admin about new job posting
+        try {
+            $adminEmail = env('ADMIN_EMAIL', config('mail.from.address'));
+            \Illuminate\Support\Facades\Mail::to($adminEmail)->send(new \App\Mail\NewJobPostedNotificationMail($job, $employer));
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Admin new job notification error: ' . $e->getMessage());
+        }
 
         return redirect()
                 ->route('employer.jobs.index')
@@ -162,7 +169,7 @@ class JobController extends Controller
             'qualification' => 'required',
 
             'districts' => 'required|array|max:12',
-            'districts.*' => 'exists:districts,id',
+            'districts.*' => 'exists:locations,id',
 
             'contact_name' => 'required',
             'contact_email' => 'required|email',
@@ -190,7 +197,7 @@ class JobController extends Controller
             'expires_at' => $request->expires_at,
         ]);
 
-        $job->districts()->sync($request->districts);
+        $job->locations()->sync($request->districts);
 
         return redirect()
             ->route('employer.jobs.index')

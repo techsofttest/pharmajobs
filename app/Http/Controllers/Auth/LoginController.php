@@ -59,7 +59,7 @@ class LoginController extends Controller
                     if (\Illuminate\Support\Facades\Schema::hasTable('subscriptions')) {
                         $hasPlan = \App\Models\Subscription::where('profile_id', $user->id)
                                     ->where('status', 'active')
-                                    ->where('ends_at', '>', \Carbon\Carbon::now())
+                                    ->where('ends_at', '>', now())
                                     ->exists();
                     }
                     if (!$hasPlan && $categoryId) {

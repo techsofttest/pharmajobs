@@ -96,6 +96,12 @@
                                         </select>
                                     </div>
 
+                                    <div class="col-md-12 form-group mb-3 text-center">
+                                    <small class="mt-1">
+                                    Designation not found? contact <a href="tel:+918137069973">+91 8137069973</a> to add new designation
+                                    </small>
+                                    </div>  
+
                         <div class="col-md-12 form-group mb-3 text-center">
 
                         <small class="text-danger d-flex align-items-center mt-1">

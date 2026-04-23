@@ -64,6 +64,10 @@ Route::middleware('guest:employee,employer')->group(function () {
         ->name('register.type');
     Route::get('/register/{type}', [RegisterTypeController::class, 'redirect'])
         ->name('register.redirect');
+    
+    Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password/{token}', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/reset-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

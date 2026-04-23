@@ -59,6 +59,10 @@ class SubscriptionController extends Controller
             return redirect()->route('login');
         }
 
+        if (auth()->guard('employer')->check()) {
+            return redirect()->route('packages')->with('error', 'Only candidates can purchase subscription plans.');
+        }
+
         // Verify category linkage (Designation locking)
         $categoryId = null;
         if (auth()->guard('employee')->check()) {
@@ -78,6 +82,10 @@ class SubscriptionController extends Controller
         
         if (!$user) {
             return response()->json(['success' => false, 'message' => 'Please login to continue'], 401);
+        }
+
+        if (auth()->guard('employer')->check()) {
+            return response()->json(['success' => false, 'message' => 'Only candidates can purchase subscription plans.'], 403);
         }
 
         // Verify category linkage (Designation locking)
@@ -151,7 +159,7 @@ class SubscriptionController extends Controller
                     $package = $order->package;
                     $profile = $order->profile;
 
-                    $startsAt = Carbon::now();
+                    $startsAt = now();
                     $endsAt = (clone $startsAt);
                     
                     $unit = strtolower(trim($package->duration_unit));

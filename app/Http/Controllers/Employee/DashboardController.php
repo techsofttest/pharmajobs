@@ -24,7 +24,7 @@ class DashboardController extends Controller
         if (\Illuminate\Support\Facades\Schema::hasTable('subscriptions')) {
             $activeSubscription = \App\Models\Subscription::where('profile_id', $employee->id)
                 ->where('status', 'active')
-                ->where('ends_at', '>', \Carbon\Carbon::now())
+                ->where('ends_at', '>', now())
                 ->with('package')
                 ->latest('ends_at')
                 ->first();

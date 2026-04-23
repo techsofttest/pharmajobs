@@ -12,7 +12,7 @@
         <div class="container" style="position: relative; z-index: 2;">
             <div class="breadcumb-content text-center">
                 <h1 class="breadcumb-title text-white" style="font-size: 56px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;">Our Packages</h1>
-                <p class="text-white-50 mb-0 mx-auto" style="max-width: 600px; font-size: 18px;">Choose the perfect plan to accelerate your career or find the best talent in the pharma industry.</p>
+                <p class="text-white-50 mb-0 mx-auto" style="max-width: 600px; font-size: 18px;">Choose the perfect plan to accelerate your career or find the best talent in the industry.</p>
             </div>
         </div>
     </div>

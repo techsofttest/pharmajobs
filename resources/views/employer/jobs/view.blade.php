@@ -20,7 +20,7 @@
 
 <div style="margin-bottom:20px;">
 <strong>Location:</strong>
-{{ $job->districts->pluck('name')->implode(', ') }}
+{{ $job->locations->pluck('name')->implode(', ') }}
 </div>
 
 <div style="margin-bottom:20px;">

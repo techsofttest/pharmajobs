@@ -60,8 +60,8 @@
 
 <td>
 
-@if($job->districts->count() > 0)
-  {{ $job->districts->pluck('name')->implode(', ') }}
+@if($job->locations->count() > 0)
+  {{ $job->locations->pluck('name')->implode(', ') }}
 @endif
 
 </td>
