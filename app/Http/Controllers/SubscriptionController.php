@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Razorpay\Api\Api;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SubscriptionSuccessMail;
 
 class SubscriptionController extends Controller
 {
@@ -170,6 +172,19 @@ class SubscriptionController extends Controller
                         'ends_at' => $endsAt,
                         'status' => 'active',
                     ]);
+
+                    // Send Email Notification
+                    try {
+                        Mail::to($profile->email)->send(new SubscriptionSuccessMail(
+                            $profile,
+                            $package->name,
+                            $request->razorpay_payment_id,
+                            $startsAt,
+                            $endsAt
+                        ));
+                    } catch (\Exception $e) {
+                        \Illuminate\Support\Facades\Log::error('Failed to send subscription success email: ' . $e->getMessage());
+                    }
                 });
 
                 return response()->json(['success' => true, 'message' => 'Payment successful! Plan activated.']);

@@ -133,7 +133,7 @@ public function locations(Request $request, $designationId)
         Auth::guard('employee')->login($profile);
 
         // Dispatch registered event to send email
-        event(new \Illuminate\Auth\Events\Registered($profile));
+        // event(new \Illuminate\Auth\Events\Registered($profile));
 
         $categoryId = $request->category_id;
         $package = \App\Models\Package::where('is_active', true)->where('category_id', $categoryId)->first();

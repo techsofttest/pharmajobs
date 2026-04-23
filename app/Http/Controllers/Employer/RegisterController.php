@@ -56,7 +56,7 @@ class RegisterController extends Controller
 
         Auth::guard('employer')->login($profile);
 
-        event(new \Illuminate\Auth\Events\Registered($profile));
+        // event(new \Illuminate\Auth\Events\Registered($profile));
 
         return redirect()->route('employer.dashboard');
     }
