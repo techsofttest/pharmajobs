@@ -6,6 +6,20 @@
 
 @section('head_extras')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+
+<style>
+
+
+.payment-container
+{
+    background-color:var(--theme-color2);
+}
+
+</style>
+
+
 @endsection
 
 @section('content')
@@ -16,28 +30,28 @@
                 <div class="card border-0 shadow-lg overflow-hidden" style="border-radius: 20px;">
                     <div class="row g-0">
                         <!-- Left Side: Package Details -->
-                        <div class="col-md-5 bg-primary text-white p-5 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, #006aff 0%, #0046b3 100%) !important;">
+                        <div class="payment-container col-md-5 text-white p-4 d-flex flex-column justify-content-between" style="">
                             <div>
                                 <h6 class="text-uppercase fw-bold mb-3" style="letter-spacing: 2px; opacity: 0.8;">Selected Plan</h6>
-                                <h2 class="fw-800 mb-2">{{ $package->name }}</h2>
-                                <p class="mb-4" style="opacity: 0.9;">{{ $package->category->name }}</p>
+                                <h2 class="fw-800 mb-2 text-white">{{ $package->category->name }}</h2>
+                                <p class="mb-4 text-white" style="">{{ $package->name }}</p>
                                 
                                 <div class="price-box mb-4">
                                     <span class="fs-4">Rs.</span>
                                     <span class="display-5 fw-bold">{{ number_format($package->price, 2) }}</span>
-                                    <p class="small opacity-75 mt-1">(Inclusive of all taxes)</p>
+                                    <p class="small opacity-75 mt-1 text-white">(Inclusive of all taxes)</p>
                                 </div>
 
                                 <div class="package-features">
-                                    <p class="mb-2"><i class="fas fa-check-circle me-2"></i> Validity: {{ $package->duration_value }} {{ ucfirst($package->duration_unit) }}</p>
-                                    <p class="mb-2"><i class="fas fa-check-circle me-2"></i> Access to all designations</p>
-                                    <p class="mb-2"><i class="fas fa-check-circle me-2"></i> Premium Job Alerts</p>
+                                    <p class="mb-2 text-white"><i class="fas fa-check-circle me-2"></i> Validity: {{ $package->duration_value }} {{ ucfirst($package->duration_unit) }}</p>
+                                    <p class="mb-2 text-white"><i class="fas fa-check-circle me-2"></i> Access to {{ $user->employee?->designation?->name ?? 'your designation' }} Jobs</p>
+                                    <p class="mb-2 text-white"><i class="fas fa-check-circle me-2"></i> Limited to {{ $user->employee && $user->employee->locations->count() > 0 ? $user->employee->locations->pluck('name')->implode(', ') : 'your selected locations' }}</p>
                                 </div>
                             </div>
                             
                             <div class="mt-auto pt-5 text-center">
                                 <i class="fas fa-shield-alt fa-4x mb-3" style="opacity: 0.5;"></i>
-                                <p class="small text-uppercase fw-bold" style="letter-spacing: 1px; opacity: 0.7;">Secure Checkout</p>
+                                <p class="small text-uppercase fw-bold text-white" style="letter-spacing: 1px; opacity: 0.7;">Secure Checkout</p>
                             </div>
                         </div>
 
@@ -48,7 +62,7 @@
                             <div class="summary-details mb-4">
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">Subscription Plan</span>
-                                    <span class="fw-semibold">{{ $package->name }}</span>
+                                    <span class="fw-semibold">{{ $package->category->name }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">Duration</span>
@@ -73,6 +87,10 @@
                             <button id="make-payment-btn" class="btn btn-primary w-100 py-3 fw-bold shadow-sm" style="border-radius: 12px; font-size: 18px; transition: all 0.3s ease;">
                                 <i class="fas fa-lock me-2"></i> Make Payment
                             </button>
+                            
+                            <a href="{{ auth()->guard('employee')->check() ? route('employee.dashboard') : route('employer.dashboard') }}" class="btn btn-outline-secondary w-100 py-3 fw-bold shadow-sm mt-3" style="border-radius: 12px; font-size: 18px; transition: all 0.3s ease;">
+                                Skip Now
+                            </a>
                             
                             <div class="text-center mt-3">
                                 <p class="text-muted small mb-0"><i class="fas fa-shield-alt me-1"></i> 100% Secure Transaction via Razorpay</p>

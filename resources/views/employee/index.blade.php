@@ -19,6 +19,18 @@
         <div class="stat-value">{{$employee->employee->category->name}}</div>
         <div class="stat-label">{{$employee->employee->designation->name}}</div>
       </div>
+
+
+      <div class="stat-card {{ $activeSubscription ? 'green' : 'red' }}">
+        <div class="stat-icon {{ $activeSubscription ? 'green' : 'red' }}"><i class="fa-solid fa-layer-group"></i></div>
+        @if($activeSubscription)
+            <div class="stat-value" style="font-size: 1.2rem;">{{ $activeSubscription->package->name ?? 'Plan' }} <br><span style="font-size: 0.9rem;">(Rs. {{ number_format($activeSubscription->price ?? 0, 2) }})</span></div>
+            <div class="stat-label">Expires: {{ \Carbon\Carbon::parse($activeSubscription->ends_at)->format('d M, Y') }}</div>
+        @else
+            <div class="stat-value">No active plan</div>
+            <div class="stat-label">--</div>
+        @endif
+      </div>
     
       
     </div>

@@ -51,9 +51,30 @@ class LoginController extends Controller
             $redirect = session()->pull('intended_url');
             
             if (!$redirect) {
-                $redirect = ($user->role === 'employer') 
-                    ? route('employer.dashboard') 
-                    : route('employee.dashboard');
+                if ($user->role === 'employer') {
+                    $redirect = route('employer.dashboard');
+                } else {
+                    $categoryId = $user->employee->category_id ?? null;
+                    $hasPlan = false;
+                    if (\Illuminate\Support\Facades\Schema::hasTable('subscriptions')) {
+                        $hasPlan = \App\Models\Subscription::where('profile_id', $user->id)
+                                    ->where('status', 'active')
+                                    ->where('ends_at', '>', \Carbon\Carbon::now())
+                                    ->exists();
+                    }
+                    if (!$hasPlan && $categoryId) {
+                        $package = \App\Models\Package::where('is_active', true)
+                                        ->where('category_id', $categoryId)
+                                        ->first();
+                        if ($package) {
+                            $redirect = route('checkout.show', $package->id);
+                        } else {
+                            $redirect = route('employee.dashboard');
+                        }
+                    } else {
+                        $redirect = route('employee.dashboard');
+                    }
+                }
             }
 
             return response()->json([

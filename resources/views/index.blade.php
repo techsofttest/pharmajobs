@@ -215,8 +215,9 @@
                             </h2>
                         </div>
 						
-						   <p>Pharma Healthcare Jobs  is a  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-<p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						   <p>Welcome to Pharmahealthcarejobs, the premier hub connecting talented professionals with opportunity details in Pharmaceutical segment, Medical Science (Doctors), Para-Medical Service and General categories of these three segments.
+</p>
+<p>Our platform is designed to simplify the hiring process also. Whether you are a growing start up or an established enterprise in Pharmaceutical sector, Medical Science (Hospital) or Any Para Medical Organization, we help you to build strong teams of skilled professionals who are ready to contribute from day one.</p>
              
 					  
 							  </div>
@@ -258,7 +259,8 @@
 				    <div class="jooo-con-in">
 					    <div class="jooo-con">
 					 <h3>I am a Employee / Candidate</h3>
-					 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					 <p>Whether you are looking for a placement at Pharmaceuticals, Medical or Para-Medical with Experience or Fresh to the field, we understand your passion of excellence, we offer a specialized unique platform to help you find a role where your work makes a difference.
+</p>
 					 <span class="th-btn  ">Click Here
 					 
 					 </span>
@@ -280,8 +282,8 @@
 					  <div class="col-lg-6 d-flex">
 				    <div class="jooo-con-in">
 					    <div class="jooo-con">
-					 <h3>I am an Employer</h3>
-					 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					 <h3>I am an Employer (Free Of Cost)</h3>
+					 <p>Whether you are an HR, Administrator or Manager in a Pharmaceutical Company, Hospital or any of the Healthcare Organization seeking for Experienced/Fresh professionals, this is the right place to upload your vacancy details under you for FREE OF COST</p>
 					 <span class="th-btn  style2">Click Here
 					 
 					 </span>
@@ -317,7 +319,7 @@
                          Our Latest Jobs 
                             </h2>
 							
-								<p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  </p>
+								<p>Search and find latest job updates here</p>
   
                         </div>
 					
@@ -352,9 +354,9 @@
                         <div class="title-area text-center">
                        
                             <h2 class="sec-title style2 split-text mb-10">
-       Our  Medical Categories 
+       Our Specialized Categories
                             </h2>
-							<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+							<p>Our categories include Pharmaceuticals, Para-Medical & General and Medical (Doctors)</p> 
                         </div>
                     </div>
                 </div>

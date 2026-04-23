@@ -296,7 +296,7 @@
                         <div class="icon-wrapper">
                             <i class="fa-solid fa-user"></i>
                         </div>
-                        <h3>I'm an Employee</h3>
+                        <h3>I'm an Employee / Candidate</h3>
                         <p>Looking for exciting career opportunities</p>
                         
                         <ul class="features-list">

@@ -19,11 +19,22 @@ class DashboardController extends Controller
                     ->get();
 
         $application_count = $applications->count();
+        
+        $activeSubscription = null;
+        if (\Illuminate\Support\Facades\Schema::hasTable('subscriptions')) {
+            $activeSubscription = \App\Models\Subscription::where('profile_id', $employee->id)
+                ->where('status', 'active')
+                ->where('ends_at', '>', \Carbon\Carbon::now())
+                ->with('package')
+                ->latest('ends_at')
+                ->first();
+        }
 
         return view('employee.index',compact(
             'applications',
             'application_count',
-            'employee'
+            'employee',
+            'activeSubscription'
         ));
     }
 }

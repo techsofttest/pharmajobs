@@ -135,6 +135,12 @@ public function locations(Request $request, $designationId)
         // Dispatch registered event to send email
         event(new \Illuminate\Auth\Events\Registered($profile));
 
+        $categoryId = $request->category_id;
+        $package = \App\Models\Package::where('is_active', true)->where('category_id', $categoryId)->first();
+        if ($package) {
+            return redirect()->route('checkout.show', $package->id);
+        }
+
         return redirect()->route('employee.dashboard');
         
     }
