@@ -21,7 +21,7 @@
             overflow: hidden;
         }
         .header {
-            background-color: #006aff;
+            background-color: #ffffff;
             color: #ffffff;
             padding: 25px;
             text-align: center;
@@ -36,7 +36,7 @@
             line-height: 1.6;
         }
         .content h2 {
-            color: #006aff;
+            color: #2b9346;
             margin-top: 0;
         }
         .footer {
@@ -48,7 +48,7 @@
         }
         .button {
             display: inline-block;
-            background-color: #006aff;
+            background-color: #2b9346;
             color: #ffffff;
             text-decoration: none;
             padding: 12px 25px;
@@ -58,7 +58,7 @@
         }
         .info-box {
             background-color: #f8f9fa;
-            border-left: 4px solid #006aff;
+            border-left: 4px solid #2b9346;
             padding: 15px;
             margin: 20px 0;
         }
@@ -76,14 +76,15 @@
     <div class="email-container">
         <!-- Header -->
         <div class="header">
-            <h1>@yield('header_title', 'Pharma Healthcare Jobs')</h1>
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="max-width: 150px; margin-top: 10px;">
         </div>
 
         <!-- Content -->
         <div class="content">
+
             @yield('content')
             
-            <p>Best Regards,<br>The Pharma Healthcare Jobs Team</p>
+            <p>Best Regards,<br>Pharma Healthcare Jobs</p>
         </div>
 
         <!-- Footer -->

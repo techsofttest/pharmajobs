@@ -10,7 +10,7 @@
     
     <div class="info-box">
         <div class="info-row">
-            <span class="info-label">Job Title:</span> <span>{{ $job->title }}</span>
+            <span class="info-label">Job Title:</span> <span>{{ $job->designation->name }}</span>
         </div>
         <div class="info-row">
             <span class="info-label">Applicant:</span> <span>{{ $applicant->first_name }} {{ $applicant->last_name }}</span>

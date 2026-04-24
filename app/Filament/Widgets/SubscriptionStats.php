@@ -2,6 +2,9 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Subscription;
+use App\Models\Order;
+use App\Models\Job;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -12,18 +15,29 @@ class SubscriptionStats extends BaseWidget
 
     protected function getStats(): array
     {
+        $activeCount = Subscription::where('status', 'active')
+            ->where('ends_at', '>=', now())
+            ->count();
+            
+        $expiredCount = Subscription::where('ends_at', '<', now())->count();
+        
+        $monthlyRevenue = Order::where('status', 'success')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->sum('amount');
+            
+        $pendingJobs = Job::where('is_active', 0)->count();
+
         return [
-            Stat::make('Active Subscriptions', 124)
-                ->description('12% increase')
+            Stat::make('Active Subscriptions', $activeCount)
                 ->color('success'),
 
-            Stat::make('Expired Subscriptions', 18)
-                ->description('3 expired today')
-                ->color('danger'),
-
-            Stat::make('Monthly Revenue', '₹1,24,500')
-                ->description('From 87 payments')
+            Stat::make('Monthly Revenue', '₹' . number_format($monthlyRevenue, 2))
                 ->color('primary'),
+                
+            Stat::make('Pending Jobs', $pendingJobs)
+                ->description('Awaiting approval')
+                ->color('warning')
         ];
     }
 }

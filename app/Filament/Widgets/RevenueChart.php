@@ -2,6 +2,8 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Order;
+use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
 
 class RevenueChart extends ChartWidget
@@ -12,14 +14,28 @@ class RevenueChart extends ChartWidget
 
     protected function getData(): array
     {
+        $data = [];
+        $labels = [];
+
+        for ($i = 5; $i >= 0; $i--) {
+            $month = now()->subMonths($i);
+            $labels[] = $month->format('M');
+            
+            $data[] = Order::where('status', 'success')
+                ->whereMonth('created_at', $month->month)
+                ->whereYear('created_at', $month->year)
+                ->sum('amount');
+        }
+
         return [
             'datasets' => [
                 [
                     'label' => 'Revenue (₹)',
-                    'data' => [25000, 32000, 41000, 38000, 52000, 61000],
+                    'data' => $data,
+                    'borderColor' => '#f59e0b',
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            'labels' => $labels,
         ];
     }
 
