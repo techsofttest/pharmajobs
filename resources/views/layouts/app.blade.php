@@ -130,11 +130,11 @@
 
 
 <!-- Decorative Chat Background -->
-<div class="chat-bg">
+<!--<div class="chat-bg">
 
   <img src="{{asset('img/chat.png')}}">
   
-  </div>
+  </div>-->
 
 
 
