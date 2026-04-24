@@ -309,6 +309,36 @@
 
 
 	 
+			<!-- Recommended Jobs -->
+            @if(auth('employee')->check())
+            <div class="career-inner-sec pt-0 pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 text-center col-xl-8 wow fadeInUp" data-wow-delay=".3s">
+                            <div class="title-area mb-30">
+                                <h2 class="sec-title style2 split-text">Recommended Jobs</h2>
+                                <p>Jobs matching your designation and preferred locations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        @if($recommended_jobs && $recommended_jobs->count() > 0)
+                            @include('components.job-card',['jobs' => $recommended_jobs ])
+                        @else
+                            <div class="col-12 text-center py-5">
+                                <div class="bg-light rounded p-5 border">
+                                    <i class="fa-solid fa-briefcase text-muted mb-3" style="font-size: 3rem;"></i>
+                                    <h4 class="text-muted">No jobs found for your preferences</h4>
+                                    <p class="mb-0">Try updating your profile with more locations or different designations.</p>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endif
+
 			<!-- Latest Jobs -->
             <div class="career-inner-sec">
 

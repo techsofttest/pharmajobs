@@ -39,6 +39,15 @@ class HomeController extends Controller
 
     $data['jobs'] = Job::active()->with(['company','locations'])->latest()->get();
 
+    $data['recommended_jobs'] = null;
+    if (auth()->guard('employee')->check()) {
+        $data['recommended_jobs'] = Job::active()
+            ->recommended(auth()->guard('employee')->user())
+            ->with(['company', 'locations'])
+            ->latest()
+            ->get();
+    }
+
     return view('index',$data);
 
     }

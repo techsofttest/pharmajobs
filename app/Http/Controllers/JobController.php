@@ -17,7 +17,16 @@ class JobController extends Controller
     public function index()
     {
     
-    $data['jobs'] = Job::with(['company','locations'])->where('is_active',1)->latest()->get();
+    $data['jobs'] = Job::with(['company','locations'])->active()->latest()->get();
+
+    $data['recommended_jobs'] = null;
+    if (auth()->guard('employee')->check()) {
+        $data['recommended_jobs'] = Job::active()
+            ->recommended(auth()->guard('employee')->user())
+            ->with(['company', 'locations'])
+            ->latest()
+            ->get();
+    }
 
     return view('jobs',$data);
 

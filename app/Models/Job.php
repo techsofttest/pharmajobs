@@ -24,6 +24,21 @@ class Job extends Model
         return $query->where('is_active', 1);
     }
 
+    public function scopeRecommended($query, $employee)
+    {
+        if (!$employee || !$employee->employee) {
+            return $query->whereRaw('1 = 0'); // No results
+        }
+
+        $designationId = $employee->employee->designation_id;
+        $locationIds = $employee->employee->locations->pluck('id')->toArray();
+
+        return $query->where('designation_id', $designationId)
+            ->whereHas('locations', function ($q) use ($locationIds) {
+                $q->whereIn('locations.id', $locationIds);
+            });
+    }
+
      public function company()
     {
         return $this->belongsTo(\App\Models\Company::class);
