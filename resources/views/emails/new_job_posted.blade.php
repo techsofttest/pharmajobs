@@ -10,9 +10,6 @@
     
     <div class="info-box">
         <div class="info-row">
-            <span class="info-label">Division Name:</span> <span>{{ $job->title }}</span>
-        </div>
-        <div class="info-row">
             <span class="info-label">Designation:</span> <span>{{ $job->designation->name ?? 'N/A' }}</span>
         </div>
         <div class="info-row">

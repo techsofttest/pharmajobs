@@ -20,6 +20,13 @@ class DesignationsTable
                     ->searchable(),
                 ToggleColumn::make('is_active')
                 ->label('Status'),
+                IconColumn::make('all_locations')
+                    ->label('All Locations')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-globe-alt')
+                    ->falseIcon('heroicon-o-x-mark')
+                    ->trueColor('success')
+                    ->falseColor('gray'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
