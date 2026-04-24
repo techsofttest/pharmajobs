@@ -40,38 +40,64 @@
                                 <p class="text-muted small">Have a question or need support? Fill out the form below and we'll get back to you shortly.</p>
                             </div>
 
-                            <form action="#" method="POST">
+                            @if(session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+
+                            @if($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul class="mb-0">
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+
+                            <form action="{{ route('contact.store') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     
                                     <div class="col-md-6 form-group mb-3">
                                         <label class="fw-bold mb-2 text-dark">Your Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="name" placeholder="Ex: David Smith" required>
+                                        <input type="text" class="form-control" name="name" placeholder="Ex: David Smith" value="{{ old('name') }}" required>
                                     </div>
 
                                     <div class="col-md-6 form-group mb-3">
                                         <label class="fw-bold mb-2 text-dark">Your Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" name="email" placeholder="Ex: email@domain.com" required>
+                                        <input type="email" class="form-control" name="email" placeholder="Ex: email@domain.com" value="{{ old('email') }}" required>
                                     </div>
 
                                     <div class="col-md-6 form-group mb-3">
                                         <label class="fw-bold mb-2 text-dark">Phone Number</label>
-                                        <input type="tel" class="form-control" name="phone" placeholder="Ex: +91 98765 43210">
+                                        <input type="tel" class="form-control" name="phone" placeholder="Ex: +91 98765 43210" value="{{ old('phone') }}">
                                     </div>
 
                                     <div class="col-md-6 form-group mb-3">
                                         <label class="fw-bold mb-2 text-dark">Subject <span class="text-danger">*</span></label>
                                         <select class="form-select" name="subject">
-                                            <option value="" disabled selected>Select Subject</option>
-                                            <option value="General Inquiry">General Inquiry</option>
-                                            <option value="Support">Support</option>
-                                            <option value="Feedback">Feedback</option>
-                                            <option value="Other">Other</option>
+                                            <option value="" disabled {{ old('subject') ? '' : 'selected' }}>Select Subject</option>
+                                            <option value="General Inquiry" {{ old('subject') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
+                                            <option value="Support" {{ old('subject') == 'Support' ? 'selected' : '' }}>Support</option>
+                                            <option value="Feedback" {{ old('subject') == 'Feedback' ? 'selected' : '' }}>Feedback</option>
+                                            <option value="Other" {{ old('subject') == 'Other' ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-12 form-group mb-4">
                                         <label class="fw-bold mb-2 text-dark">Message <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="message" rows="5" placeholder="Write your message here..." style="height: 150px; padding-top: 15px;"></textarea>
+                                        <textarea class="form-control" name="message" rows="5" placeholder="Write your message here..." style="height: 150px; padding-top: 15px;">{{ old('message') }}</textarea>
                                     </div>
 
                                     <div class="col-12 mt-2">

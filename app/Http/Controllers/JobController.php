@@ -17,7 +17,7 @@ class JobController extends Controller
     public function index()
     {
     
-    $data['jobs'] = Job::with(['company','locations'])->latest()->get();
+    $data['jobs'] = Job::with(['company','locations'])->where('is_active',1)->latest()->get();
 
     return view('jobs',$data);
 
