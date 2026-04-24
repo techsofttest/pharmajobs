@@ -49,7 +49,7 @@
         .button {
             display: inline-block;
             background-color: #2b9346;
-            color: #ffffff;
+            color: #ffffff !important;
             text-decoration: none;
             padding: 12px 25px;
             border-radius: 5px;
@@ -76,7 +76,7 @@
     <div class="email-container">
         <!-- Header -->
         <div class="header">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="max-width: 150px; margin-top: 10px;">
+            <img src="{{asset('img/logo/primary-logo.png')}}" alt="Logo" style="max-width: 150px; margin-top: 10px;">
         </div>
 
         <!-- Content -->
@@ -84,7 +84,7 @@
 
             @yield('content')
             
-            <p>Best Regards,<br>Pharma Healthcare Jobs</p>
+        <p>Best Regards,<br>Pharma Healthcare Jobs</p>
         </div>
 
         <!-- Footer -->
