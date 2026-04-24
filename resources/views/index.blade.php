@@ -330,7 +330,6 @@
                                 <div class="bg-light rounded p-5 border">
                                     <i class="fa-solid fa-briefcase text-muted mb-3" style="font-size: 3rem;"></i>
                                     <h4 class="text-muted">No jobs found for your preferences</h4>
-                                    <p class="mb-0">Try updating your profile with more locations or different designations.</p>
                                 </div>
                             </div>
                         @endif
