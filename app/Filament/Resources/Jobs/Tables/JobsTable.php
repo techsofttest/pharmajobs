@@ -18,18 +18,13 @@ class JobsTable
     {
         return $table
             ->columns([
-            ImageColumn::make('company.logo')
-                ->label('Logo')
-                ->circular()
-                ->height(40),
+
+            ToggleColumn::make('is_active')
+                ->label('Active / Approval')
+                ->sortable(),
 
             TextColumn::make('company.name')
                 ->label('Company')
-                ->searchable()
-                ->sortable(),
-
-            TextColumn::make('title')
-                ->label('Job Title')
                 ->searchable()
                 ->sortable(),
 
@@ -57,14 +52,15 @@ class JobsTable
             TextColumn::make('contact_phone')
                 ->label('Phone')
                 ->searchable()
-                ->toggleable(),
-
-            ToggleColumn::make('is_active')
-                ->label('Active')
-                ->sortable(),
+                ->toggleable()
             ])
-            ->defaultSort('created_at', 'desc')
             ->filters([
+                \Filament\Tables\Filters\SelectFilter::make('is_active')
+                    ->label('Status')
+                    ->options([
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ]),
                 \Filament\Tables\Filters\SelectFilter::make('designation_id')
                     ->label('Designation')
                     ->relationship('designation', 'name')
