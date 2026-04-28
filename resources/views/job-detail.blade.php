@@ -1193,7 +1193,7 @@
 
             @if(!$employee->employee->cv)
 
-            <button class="btn-apply" style="background:red;">
+            <button class="btn-apply" style="background:red;" onclick="window.location.href='{{ route('employee.profile.edit') }}'">
               <i class="fa-regular fa-lock me-2"></i>
               Upload Resume to Apply
               <i class="fa-solid fa-arrow-right"></i>
