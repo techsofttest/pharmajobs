@@ -1008,22 +1008,16 @@
         <!-- Description -->
         <div class="job-body job-desc">
 
+        @if($job->description)
         <div class="section-heading">About the Role</div>
-
-        {{-- ═══════════ ACCESS CONTROL LOGIC ═══════════
-             Priority order:
-             1. Guest (not logged in)         → Login gate
-             2. Employee, location mismatch   → Location restricted gate
-             3. Employee, designation mismatch → Designation restricted gate
-             4. Employee, no subscription     → Subscribe gate
-             5. Employee, all checks pass     → Full details
-             6. Employer                      → Full details (always)
-        ═══════════════════════════════════════════════ --}}
-
+        @endif
+...
         @if($canViewFullDetails)
 
           {{-- ✅ Full details — employee with matching location + designation + active subscription, OR employer --}}
+          @if($job->description)
           {!! $job->description !!}
+          @endif
 
         @elseif(!$isEmployee && !$isEmployer)
 
@@ -1153,8 +1147,9 @@
             @else
 
             <div class="contact-wrapper">
-              <div class="row g-3 align-items-stretch">
+              <div class="row g-3 align-items-stretch justify-content-center">
                 <!-- Name -->
+                @if($job->contact_name)
                 <div class="col-12 col-md-4">
                   <div class="contact-card h-100">
                     <div class="contact-icon-wrap">
@@ -1164,7 +1159,9 @@
                     <div class="contact-value">{{ $job->contact_name }}</div>
                   </div>
                 </div>
+                @endif
                 <!-- Phone -->
+                @if($job->contact_phone)
                 <div class="col-12 col-md-4">
                   <div class="contact-card h-100">
                     <div class="contact-icon-wrap">
@@ -1174,7 +1171,9 @@
                     <div class="contact-value">{{ $job->contact_phone }}</div>
                   </div>
                 </div>
+                @endif
                 <!-- Email -->
+                @if($job->contact_email)
                 <div class="col-12 col-md-4">
                   <div class="contact-card h-100">
                     <div class="contact-icon-wrap">
@@ -1184,6 +1183,7 @@
                     <div class="contact-value">{{ $job->contact_email }}</div>
                   </div>
                 </div>
+                @endif
               </div>
             </div>
 

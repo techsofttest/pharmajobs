@@ -36,21 +36,23 @@ class JobForm
                             ->preload()
                             ->required(),
 
-                        TextInput::make('job_id')
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(255),
-
                         TextInput::make('title')
                             ->label('Division Name')
                             ->required()
                             ->maxLength(255),
 
-                        RichEditor::make('description')
-                            ->required(),
-
                         TextInput::make('qualification')
                             ->required(),
+
+                        TextInput::make('job_id')
+                            ->unique(ignoreRecord: true)
+                            ->maxLength(255),
+
+                        RichEditor::make('description')
+                            ->nullable(),
+
                     ]),
+
 
                 Section::make('Area')
                     ->label('Headquaters/Locations')
@@ -69,15 +71,15 @@ class JobForm
                     ->schema([
 
                         TextInput::make('contact_name')
-                            ->required(),
+                            ->nullable(),
 
                         TextInput::make('contact_email')
                             ->email()
-                            ->required(),
+                            ->nullable(),
 
                         TextInput::make('contact_phone')
                             ->tel()
-                            ->required(),
+                            ->nullable(),
                     ]),
 
                 Section::make('Job Criteria')

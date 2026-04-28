@@ -10,7 +10,35 @@ class ProfileInfolist
     {
         return $schema
             ->components([
-                //
+                \Filament\Infolists\Components\Section::make('Profile Information')
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('first_name'),
+                        \Filament\Infolists\Components\TextEntry::make('last_name'),
+                        \Filament\Infolists\Components\TextEntry::make('email'),
+                        \Filament\Infolists\Components\TextEntry::make('phone'),
+                        \Filament\Infolists\Components\TextEntry::make('role')
+                            ->badge()
+                            ->color(fn (string $state): string => match ($state) {
+                                'employer' => 'success',
+                                'employee' => 'primary',
+                                default => 'gray',
+                            }),
+                        \Filament\Infolists\Components\IconEntry::make('is_active')
+                            ->label('Active')
+                            ->boolean(),
+                    ])->columns(2),
+
+                \Filament\Infolists\Components\Section::make('Company Information')
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('employer.company.name')
+                            ->label('Company Name'),
+                        \Filament\Infolists\Components\TextEntry::make('employer.company.email')
+                            ->label('Company Email'),
+                        \Filament\Infolists\Components\TextEntry::make('employer.company.phone')
+                            ->label('Company Phone'),
+                    ])
+                    ->columns(2)
+                    ->visible(fn ($record) => $record->role === 'employer'),
             ]);
     }
 }
