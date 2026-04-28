@@ -38,7 +38,6 @@ class JobForm
 
                         TextInput::make('title')
                             ->label('Division Name')
-                            ->required()
                             ->maxLength(255),
 
                         TextInput::make('qualification')
