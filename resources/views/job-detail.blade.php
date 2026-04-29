@@ -847,7 +847,7 @@
 
 
      <div class="col-lg-12 text-center">
-        <h2>{{ $job->designation->name }} vacancy at {{ $job->company->name }}</h2>
+        <h2>{{ $job->designation->name }} vacancy {{-- at {{ $job->company->name }} --}}</h2>
      </div>
 
     <!-- ══════════════ LEFT — JOB DETAIL ══════════════ -->
@@ -875,7 +875,7 @@
             <div>
               <div class="job-title">{{ $job->designation->name }}</div>
               <div class="company-name">
-                at <a href="#">{{ $job->company->name }}</a> &nbsp;·&nbsp; Posted {{ $job->created_at->diffForHumans() }}
+               {{-- at <a href="#">{{ $job->company->name }}</a> --}} &nbsp;·&nbsp; Posted {{ $job->created_at->diffForHumans() }}
               </div>
             </div>
 

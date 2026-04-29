@@ -46,6 +46,8 @@
 
             </li>
 
+
+            {{--
             <li>
                 <i class="fa fa-building"></i> 
                 <b>Company:</b>  
@@ -53,6 +55,8 @@
                     {{ $job->company->name }}
                 </a>
             </li>
+            --}}
+
 
             <li>
                 <i class="fa fa-clock"></i>
