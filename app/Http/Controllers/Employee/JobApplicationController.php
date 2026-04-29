@@ -12,11 +12,24 @@ class JobApplicationController extends Controller
     
 
 
-    public function apply($id)
+    public function apply(Request $request, $id)
     {
     $employee = auth('employee')->user();
 
     $job = Job::findOrFail($id);
+
+    // Handle resume upload if provided
+    if ($request->hasFile('resume')) {
+        $request->validate([
+            'resume' => 'required|mimes:pdf,doc,docx|max:2048',
+        ]);
+
+        $path = $request->file('resume')->store('resumes', 'public');
+        
+        $employee->employee()->update([
+            'cv' => $path
+        ]);
+    }
 
     $alreadyApplied = JobApplication::where('job_posting_id',$job->id)
                         ->where('profile_id',$employee->id)

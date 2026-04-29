@@ -1148,6 +1148,7 @@
 
             <div class="contact-wrapper">
               <div class="row g-3 align-items-stretch justify-content-center">
+                <p>You can contact the recruiter directly with the below details.</p>
                 <!-- Name -->
                 @if($job->contact_name)
                 <div class="col-12 col-md-4">
@@ -1193,11 +1194,15 @@
 
             @if(!$employee->employee->cv)
 
-            <button class="btn-apply" style="background:red;" onclick="window.location.href='{{ route('employee.profile.edit') }}'">
-              <i class="fa-regular fa-lock me-2"></i>
-              Upload Resume to Apply
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <form action="{{ route('employee.job.apply', $job->id) }}" method="POST" enctype="multipart/form-data" class="m-0">
+              @csrf
+              <input type="file" name="resume" id="resume_upload" class="d-none" onchange="this.form.submit()" accept=".pdf,.doc,.docx">
+              <label for="resume_upload" class="btn-apply" style="background:#dc3545; cursor:pointer; margin-bottom:0;">
+                <i class="fa-solid fa-file-arrow-up me-2"></i>
+                Upload Resume & Apply
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+              </label>
+            </form>
 
             @elseif($creator && ($creator->employer->designation ?? '') == 'hr')
 
