@@ -14,10 +14,20 @@ class JobController extends Controller
 {
     
 
-    public function index()
+    public function index(Request $request)
     {
     
-    $data['jobs'] = Job::with(['company','locations'])->active()->latest()->get();
+    $query = Job::with(['company','locations'])->active();
+
+    if($request->designation)
+        $query->where('designation_id', $request->designation);
+
+    if($request->location)
+        $query->whereHas('locations', function($q) use ($request){
+            $q->where('location_id', $request->location);
+        });
+
+    $data['jobs'] = $query->latest()->get();
 
     $data['recommended_jobs'] = null;
     if (auth()->guard('employee')->check()) {
@@ -28,10 +38,11 @@ class JobController extends Controller
             ->get();
     }
 
+    $data['categories'] = Category::orderBy('name')->get();
+
     return view('jobs',$data);
 
     }
-
 
     public function detail($slug)
     {
@@ -128,20 +139,18 @@ class JobController extends Controller
     }
 
 
-    public function locationsByDesignation($designationId)
+    public function locationsByDesignation(Request $request, $designationId)
     {
         $designation = Designation::with('locations')->findOrFail($designationId);
 
-        if($designation->all_locations)
-        {
-            $locations = Location::orderBy('name')->get(['id','name']);
+        $query = $designation->all_locations ? Location::query() : $designation->locations();
+
+        if ($request->has('q') && $request->q != '') {
+            $query->where('locations.name', 'like', '%' . $request->q . '%');
         }
-        else
-        {
-            $locations = $designation->locations()
-                ->orderBy('name')
-                ->get(['locations.id','locations.name']);
-        }
+
+        $locations = $query->orderBy('locations.name')
+            ->get(['locations.id', 'locations.name']);
 
         return response()->json($locations);
     }
