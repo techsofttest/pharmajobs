@@ -875,7 +875,10 @@
             <div>
               <div class="job-title">{{ $job->designation->name }}</div>
               <div class="company-name">
-               {{-- at <a href="#">{{ $job->company->name }}</a> --}} &nbsp;·&nbsp; Posted {{ $job->created_at->diffForHumans() }}
+               @if(isset($canViewFullDetails) && $canViewFullDetails)
+                 at <strong>{{ $job->company->name ?? 'Company' }}</strong> &nbsp;·&nbsp;
+               @endif
+               Posted {{ $job->created_at->diffForHumans() }}
               </div>
             </div>
 
@@ -1149,9 +1152,21 @@
             <div class="contact-wrapper">
               <div class="row g-3 align-items-stretch justify-content-center">
                 <p>You can contact the recruiter directly with the below details.</p>
+                <!-- Company Name -->
+                @if($job->company)
+                <div class="col-12 col-md-6 col-lg-3">
+                  <div class="contact-card h-100">
+                    <div class="contact-icon-wrap">
+                      <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="contact-label">Company Name</div>
+                    <div class="contact-value">{{ $job->company->name }}</div>
+                  </div>
+                </div>
+                @endif
                 <!-- Name -->
                 @if($job->contact_name)
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6 col-lg-3">
                   <div class="contact-card h-100">
                     <div class="contact-icon-wrap">
                       <i class="fa-solid fa-user"></i>
@@ -1163,7 +1178,7 @@
                 @endif
                 <!-- Phone -->
                 @if($job->contact_phone)
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6 col-lg-3">
                   <div class="contact-card h-100">
                     <div class="contact-icon-wrap">
                       <i class="fa-solid fa-phone"></i>
@@ -1175,7 +1190,7 @@
                 @endif
                 <!-- Email -->
                 @if($job->contact_email)
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6 col-lg-3">
                   <div class="contact-card h-100">
                     <div class="contact-icon-wrap">
                       <i class="fa-solid fa-envelope"></i>

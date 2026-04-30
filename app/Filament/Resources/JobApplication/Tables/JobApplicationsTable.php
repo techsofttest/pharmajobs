@@ -16,36 +16,25 @@ class JobApplicationsTable
     {
         return $table
             ->columns([
-                TextColumn::make('employee.first_name')
-                    ->label('First Name')
+                TextColumn::make('job.designation.category.name')
+                    ->label('Category')
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('employee.last_name')
-                    ->label('Last Name')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('employee.email')
-                    ->label('Email')
-                    ->searchable(),
-
-                TextColumn::make('employee.phone')
-                    ->label('Phone')
-                    ->searchable(),
+                TextColumn::make('employee_full_name')
+                    ->label('Full Name')
+                    ->state(function (\App\Models\JobApplication $record): string {
+                        return trim(($record->employee?->first_name ?? '') . ' ' . ($record->employee?->last_name ?? ''));
+                    })
+                    ->searchable(query: function (\Illuminate\Database\Eloquent\Builder $query, string $search): \Illuminate\Database\Eloquent\Builder {
+                        return $query->whereHas('employee', function ($q) use ($search) {
+                            $q->where('first_name', 'like', "%{$search}%")
+                              ->orWhere('last_name', 'like', "%{$search}%");
+                        });
+                    }),
 
                 TextColumn::make('job.designation.name')
                     ->label('Designation')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('job.title')
-                    ->label('Job Post')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('job.company.company_name')
-                    ->label('Company')
                     ->searchable()
                     ->sortable(),
 
@@ -55,9 +44,25 @@ class JobApplicationsTable
                     ->color('primary')
                     ->searchable(),
 
+                TextColumn::make('cv_download')
+                    ->label('CV')
+                    ->state(function (\App\Models\JobApplication $record) {
+                        return ($record->resume ?? $record->employee?->employee?->cv) ? 'Download CV' : 'No CV';
+                    })
+                    ->color(function (string $state) {
+                        return $state === 'Download CV' ? 'primary' : 'gray';
+                    })
+                    ->url(function (\App\Models\JobApplication $record) {
+                        $cv = $record->resume ?? $record->employee?->employee?->cv;
+                        return $cv ? \Illuminate\Support\Facades\Storage::url($cv) : null;
+                    }, shouldOpenInNewTab: true)
+                    ->icon(function (string $state) {
+                        return $state === 'Download CV' ? 'heroicon-o-document-arrow-down' : 'heroicon-o-x-circle';
+                    }),
+
                 TextColumn::make('created_at')
-                    ->label('Applied On')
-                    ->dateTime()
+                    ->label('Apply Date')
+                    ->date()
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')

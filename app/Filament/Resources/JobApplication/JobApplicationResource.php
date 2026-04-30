@@ -17,9 +17,9 @@ class JobApplicationResource extends Resource
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-user-group';
     
-    protected static ?string $navigationLabel = 'Job Applications';
+    protected static ?string $navigationLabel = 'Resumes';
     
-    protected static ?string $modelLabel = 'Job Application';
+    protected static ?string $modelLabel = 'Resume';
 
     public static function getNavigationBadge(): ?string
     {
