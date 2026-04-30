@@ -1276,7 +1276,7 @@
                     @endphp
                     <div class="card-logo" style="{{ !$job->company->logo ? 'background-color: '.$relAvatarColor.'; color: #fff; border: none;' : '' }}">
                       @if($job->company->logo)
-                        <img src="{{ asset('storage/'.$job->company->logo) }}" alt="{{ $relCompanyName }}" width="100%">
+                        <img src="{{ asset('storage/'.$job->company->logo) }}" alt="" width="100%">
                       @else
                         <span style="font-weight: 800;">{{ $relFirstLetter }}</span>
                       @endif
@@ -1284,7 +1284,6 @@
 
             <div>
               <div class="card-title">{{ $job->designation->name }}</div>
-              <div class="card-company">{{ $job->company->name }}</div>
             </div>
             <span class="badge-new ms-auto">New</span>
           </div>
