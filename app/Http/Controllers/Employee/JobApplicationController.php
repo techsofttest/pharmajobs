@@ -56,7 +56,15 @@ class JobApplicationController extends Controller
         // If HR, also notify the HR poster
         if ($posterDesignation === 'hr' && $creator->email) {
             \Illuminate\Support\Facades\Mail::to($creator->email)->send(new \App\Mail\JobApplicationNotificationMail($job, $employee));
+        
+            // Notify the contact email in the job posting if available
+        if ($job->contact_email) {
+            \Illuminate\Support\Facades\Mail::to($job->contact_email)->send(new \App\Mail\JobApplicationNotificationMail($job, $employee));
         }
+        
+        }
+
+        
     } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error('Job application mail error: ' . $e->getMessage());
     }
