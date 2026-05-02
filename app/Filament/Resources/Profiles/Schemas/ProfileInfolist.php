@@ -10,7 +10,7 @@ class ProfileInfolist
     {
         return $schema
             ->components([
-                \Filament\Infolists\Components\Section::make('Profile Information')
+                \Filament\Schemas\Components\Section::make('Profile Information')
                     ->schema([
                         \Filament\Infolists\Components\TextEntry::make('first_name'),
                         \Filament\Infolists\Components\TextEntry::make('last_name'),
@@ -28,7 +28,7 @@ class ProfileInfolist
                             ->boolean(),
                     ])->columns(2),
 
-                \Filament\Infolists\Components\Section::make('Company Information')
+                \Filament\Schemas\Components\Section::make('Company Information')
                     ->schema([
                         \Filament\Infolists\Components\TextEntry::make('employer.company.name')
                             ->label('Company Name'),

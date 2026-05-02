@@ -41,7 +41,7 @@ class JobForm
                             ->maxLength(255),
 
                         TextInput::make('qualification')
-                            ->required(),
+                            ->nullable(),
 
                         TextInput::make('job_id')
                             ->unique(ignoreRecord: true)

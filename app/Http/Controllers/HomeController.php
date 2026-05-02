@@ -37,7 +37,7 @@ class HomeController extends Controller
     }
     $data['packages'] = $packageQuery->with('category.designations')->get();
 
-    $data['jobs'] = Job::active()->with(['company','locations'])->latest()->get();
+    $data['jobs'] = Job::active()->with(['company','locations'])->latest()->limit(10)->get();
 
     $data['recommended_jobs'] = null;
     if (auth()->guard('employee')->check()) {

@@ -76,7 +76,7 @@ class JobController extends Controller
 
             'designation_id' => 'required|exists:designations,id',
             'description' => 'required',
-            'qualification' => 'required',
+            'qualification' => 'nullable',
 
             'districts' => 'required|array|max:12',
             'districts.*' => 'exists:locations,id',
@@ -166,7 +166,7 @@ class JobController extends Controller
             'designation_id' => 'required|exists:designations,id',
             'title' => 'required|max:255',
             'description' => 'required',
-            'qualification' => 'required',
+            'qualification' => 'nullable',
 
             'districts' => 'required|array|max:12',
             'districts.*' => 'exists:locations,id',

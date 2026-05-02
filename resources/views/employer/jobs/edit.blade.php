@@ -82,14 +82,13 @@ required>{{ $job->description }}</textarea>
 
 <div class="col-md-12 form-group mb-3">
 
-<label class="fw-bold mb-2 text-dark">Qualification *</label>
+<label class="fw-bold mb-2 text-dark">Qualification</label>
 
 <input
 type="text"
 class="form-control"
 name="qualification"
-value="{{ $job->qualification }}"
-required>
+value="{{ $job->qualification }}">
 
 </div>
 

@@ -35,6 +35,14 @@
       
     </div>
 
+
+    <div class="col-auto my-3 text-center">
+
+      <a href="{{route('jobs')}}" class="th-btn">Browse Jobs</a>
+
+    </div>
+
+
     <!-- Two column section -->
     <div class="col-auto">
       <!-- Recent Jobs -->
