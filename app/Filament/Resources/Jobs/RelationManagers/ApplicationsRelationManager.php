@@ -14,6 +14,11 @@ use Filament\Actions\Action;
 
 class ApplicationsRelationManager extends RelationManager
 {
+    public static function canViewForRecord(\Illuminate\Database\Eloquent\Model $ownerRecord, string $pageClass): bool
+    {
+        return auth()->user()->isAdmin();
+    }
+
     protected static string $relationship = 'applications';
 
     protected static ?string $recordTitleAttribute = 'id';

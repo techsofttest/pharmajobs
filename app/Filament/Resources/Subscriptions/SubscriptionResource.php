@@ -17,6 +17,10 @@ use Filament\Tables\Table;
 
 class SubscriptionResource extends Resource
 {
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
     protected static string | UnitEnum | null $navigationGroup = 'User Management';
 
     protected static ?string $model = Subscription::class;

@@ -10,6 +10,10 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class SubscriptionStats extends BaseWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()->isAdmin();
+    }
 
     protected static ?int $sort = 1;
 

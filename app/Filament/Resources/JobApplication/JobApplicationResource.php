@@ -11,6 +11,10 @@ use Filament\Tables\Table;
 
 class JobApplicationResource extends Resource
 {
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
     protected static ?string $model = JobApplication::class;
 
     protected static string | \UnitEnum | null $navigationGroup = 'Job Management';

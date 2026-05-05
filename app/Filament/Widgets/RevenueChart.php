@@ -8,6 +8,11 @@ use Filament\Widgets\ChartWidget;
 
 class RevenueChart extends ChartWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()->isAdmin();
+    }
+
     protected ?string $heading = 'Monthly Revenue';
 
     protected static ?int $sort = 2;

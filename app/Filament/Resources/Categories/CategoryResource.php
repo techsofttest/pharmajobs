@@ -19,6 +19,10 @@ use UnitEnum;
 
 class CategoryResource extends Resource
 {
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
     protected static ?string $model = Category::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;

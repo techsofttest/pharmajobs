@@ -17,6 +17,10 @@ use Filament\Tables\Table;
 
 class PackageResource extends Resource
 {
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->role === 'admin';
+    }
     protected static string | UnitEnum | null $navigationGroup = 'Job Management';
 
     protected static ?string $model = Package::class;

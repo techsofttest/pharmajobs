@@ -29,7 +29,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandLogo(asset('images/adminlogo.png'))
             ->login()
-            ->profile()
+            ->profile(\App\Filament\Pages\Auth\EditProfile::class)
+            ->userMenuItems([
+                'profile' => \Filament\Navigation\MenuItem::make()->visible(fn () => auth()->user()?->isAdmin()),
+            ])
             ->spa()
             ->colors([
                 'primary' => '#5ba443',
@@ -37,13 +40,19 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
-                Dashboard::class,
+                \App\Filament\Pages\Dashboard::class,
+            ])
+            ->navigationGroups([
+                'User Management',
+                'Job Management',
+                'CMS',
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 \App\Filament\Widgets\RevenueChart::class,
                 \App\Filament\Widgets\SubscriptionStats::class,
                 \App\Filament\Widgets\SubscriptionCategoryChart::class,
+                \App\Filament\Widgets\SubAdminStats::class,
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -8,7 +8,12 @@ use Filament\Widgets\ChartWidget;
 
 class SubscriptionCategoryChart extends ChartWidget
 {
-    protected ?string $heading = 'Active Subscriptions By Category';
+    public static function canView(): bool
+    {
+        return auth()->user()->isAdmin();
+    }
+
+    protected ?string $heading = 'Subscriptions by Category';
 
     protected static ?int $sort = 3;
 
