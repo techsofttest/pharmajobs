@@ -10,7 +10,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Toggle; 
+use Illuminate\Support\HtmlString;
 
 class JobForm
 {
@@ -58,6 +59,7 @@ class JobForm
                     ->columns(1)
                     ->schema([
                         Select::make('locations')
+                            ->helperText(new HtmlString('<a href="/admin/locations/create" target="_blank">Add new location</a>'))
                             ->relationship('locations', 'name')
                             ->multiple()
                             ->searchable()

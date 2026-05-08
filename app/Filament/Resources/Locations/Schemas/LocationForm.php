@@ -17,11 +17,10 @@ class LocationForm
                 Select::make('state_id')
                     ->label('State')
                     ->options(State::query()->pluck('name', 'id'))
-                    ->required()
                     ->searchable()
                     ->preload(),
                 TextInput::make('name')
-                    ->label('Location Name (District)')
+                    ->label('Location(District)')
                     ->required()
                     ->maxLength(255),
             ]);
