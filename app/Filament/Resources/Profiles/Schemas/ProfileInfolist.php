@@ -9,6 +9,7 @@ class ProfileInfolist
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
                 \Filament\Schemas\Components\Section::make('Profile Information')
                     ->schema([
@@ -28,6 +29,20 @@ class ProfileInfolist
                             ->boolean(),
                     ])->columns(2),
 
+                    \Filament\Schemas\Components\Section::make('Additional Details')
+                    ->schema([
+                        \Filament\Infolists\Components\TextEntry::make('employee.category.name')
+                            ->label('Category'),
+                        \Filament\Infolists\Components\TextEntry::make('employee.designation.name')
+                            ->label('Designation'),
+                        \Filament\Infolists\Components\TextEntry::make('employee.locations.name')
+                            ->label('Selected Locations')
+                            ->bulleted()
+                            ->limitList(2)
+                    ])
+                    ->columns(2)
+                    ->visible(fn ($record) => $record->role === 'employee'),
+
                 \Filament\Schemas\Components\Section::make('Company Information')
                     ->schema([
                         \Filament\Infolists\Components\TextEntry::make('employer.company.name')
@@ -39,6 +54,7 @@ class ProfileInfolist
                     ])
                     ->columns(2)
                     ->visible(fn ($record) => $record->role === 'employer'),
+
             ]);
     }
 }
