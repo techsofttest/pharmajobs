@@ -13,6 +13,7 @@ class ProfilesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('first_name')
                     ->label('First Name')
