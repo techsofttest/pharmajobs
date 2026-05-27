@@ -15,6 +15,7 @@ class JobApplicationsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => $query->with(['job.locations', 'employee.employee.locations']))
             ->columns([
                 TextColumn::make('job.designation.category.name')
                     ->label('Category')
@@ -38,11 +39,21 @@ class JobApplicationsTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('job.locations.name')
+                TextColumn::make('matching_locations')
                     ->label('Location')
                     ->badge()
                     ->color('primary')
-                    ->searchable(),
+                    ->state(function (\App\Models\JobApplication $record) {
+                        $jobLocationIds = $record->job?->locations->pluck('id')->toArray() ?? [];
+                        $employeeLocations = $record->employee?->employee?->locations ?? collect();
+                        
+                        return $employeeLocations->whereIn('id', $jobLocationIds)->pluck('name')->all();
+                    })
+                    ->searchable(query: function (\Illuminate\Database\Eloquent\Builder $query, string $search): \Illuminate\Database\Eloquent\Builder {
+                        return $query->whereHas('job.locations', function ($q) use ($search) {
+                            $q->where('name', 'like', "%{$search}%");
+                        });
+                    }),
 
                 TextColumn::make('cv_download')
                     ->label('CV')
@@ -83,7 +94,7 @@ class JobApplicationsTable
                     ->color('success')
                     ->action(function ($livewire) {
                         $query = $livewire->getFilteredTableQuery();
-                        $records = $query->with(['employee', 'job', 'job.company', 'job.designation', 'job.locations'])->get();
+                        $records = $query->with(['employee.employee.locations', 'job', 'job.company', 'job.designation', 'job.locations'])->get();
                         
                         $filename = 'applications_export_' . now()->format('Y-m-d_His') . '.csv';
                         
@@ -100,7 +111,7 @@ class JobApplicationsTable
                                     $record->job?->designation?->name ?? 'N/A',
                                     $record->job?->title ?? 'N/A',
                                     $record->job?->company?->company_name ?? 'N/A',
-                                    $record->job?->locations->pluck('name')->implode(', '),
+                                    $record->employee?->employee?->locations->whereIn('id', $record->job?->locations->pluck('id') ?? [])->pluck('name')->implode(', ') ?: 'N/A',
                                     $record->created_at?->format('Y-m-d H:i') ?? 'N/A',
                                 ]);
                             }
@@ -121,7 +132,7 @@ class JobApplicationsTable
                                 $handle = fopen('php://output', 'w');
                                 fputcsv($handle, ['ID', 'Full Name', 'Email', 'Phone', 'Designation', 'Job Post', 'Company', 'Location', 'Applied On']);
                                 foreach ($records as $record) {
-                                    $record->load(['employee', 'job', 'job.company', 'job.designation', 'job.locations']);
+                                    $record->load(['employee.employee.locations', 'job', 'job.company', 'job.designation', 'job.locations']);
                                     fputcsv($handle, [
                                         $record->id,
                                         ($record->employee?->first_name ?? '') . ' ' . ($record->employee?->last_name ?? ''),
@@ -130,7 +141,7 @@ class JobApplicationsTable
                                         $record->job?->designation?->name ?? 'N/A',
                                         $record->job?->title ?? 'N/A',
                                         $record->job?->company?->company_name ?? 'N/A',
-                                        $record->job?->locations->pluck('name')->implode(', '),
+                                        $record->employee?->employee?->locations->whereIn('id', $record->job?->locations->pluck('id') ?? [])->pluck('name')->implode(', ') ?: 'N/A',
                                         $record->created_at?->format('Y-m-d H:i') ?? 'N/A',
                                     ]);
                                 }
