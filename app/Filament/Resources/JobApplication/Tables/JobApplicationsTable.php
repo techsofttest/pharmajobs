@@ -15,7 +15,18 @@ class JobApplicationsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => $query->with(['job.locations', 'employee.employee.locations']))
+            ->modifyQueryUsing(function (\Illuminate\Database\Eloquent\Builder $query) {
+			return $query
+			->whereIn('id', function ($sub) {
+            $sub->selectRaw('MAX(id)')
+                ->from('job_applications')
+                ->groupBy('profile_id');
+			})
+			->with([
+            'job.locations',
+            'employee.employee.locations',
+			]);
+			})
             ->columns([
                 TextColumn::make('job.designation.category.name')
                     ->label('Category')
@@ -121,7 +132,7 @@ class JobApplicationsTable
             ])
             ->bulkActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    //DeleteBulkAction::make(),
                     BulkAction::make('export_selected')
                         ->label('Export Selected')
                         ->icon('heroicon-o-document-arrow-down')
