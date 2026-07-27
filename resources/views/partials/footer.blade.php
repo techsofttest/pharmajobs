@@ -24,7 +24,7 @@
                                 <div class="footer-social-links-gold">
                                     <ul>
                                         <li><a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-                                        <li><a href="https://www.instagram.com/pharma_healthcare_jobs/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                        <li><a href="https://www.instagram.com/pharma_healthcare_jobsindia/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                                         <li><a href="https://www.facebook.com/profile.php?id=61590456175892" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                                         <li><a href="#" target="_blank"><i class=" "><img src="{{asset('img/twitter.png')}}"></i></a></li>
                                     </ul>

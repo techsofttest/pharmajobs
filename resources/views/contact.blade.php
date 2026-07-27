@@ -151,10 +151,10 @@
                             <h4 class="h5 mb-3">Follow Us</h4>
                             <p class="text-muted small mb-4">Stay connected with us for the latest updates.</p>
                             <div class="th-social style2 justify-content-center">
-                                <a href="#" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i class="fab fa-instagram"></i></a>
+                                <a target="_blank" href="https://www.facebook.com/profile.php?id=61590456175892" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i style="line-height:unset" class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i style="line-height:unset" class="fab fa-twitter"></i></a>
+                                <a href="#" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i style="line-height:unset" class="fab fa-linkedin-in"></i></a>
+                                <a target="_blank" href="https://www.instagram.com/pharma_healthcare_jobsindia/" class="mx-1" style="width: 40px; height: 40px; line-height: 40px; background: #f4f4f4; border-radius: 50%; color: #333; display: inline-block;"><i style="line-height:unset" class="fab fa-instagram"></i></a>
                             </div>
                         </div>
 
